@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 from .engine import data_engine
+from . import gemini_engine
 
 app = FastAPI(title="PharmCube BI Backend")
 
@@ -18,6 +19,7 @@ app.add_middleware(
 # --- 数据模型 ---
 class QueryRequest(BaseModel):
     text: str
+    history: Optional[List[Dict[str, Any]]] = None  # 可选：最近对话，供 Gemini 历史上下文
 
 class DashboardItem(BaseModel):
     id: str
@@ -25,6 +27,7 @@ class DashboardItem(BaseModel):
     config: Dict[str, Any]
     title: str
     gridSpan: int = 1
+    renderData: Optional[List[Dict[str, Any]]] = None  # 前端图表数据，用于看板展示
 
 # --- 模拟数据库 (内存存储) ---
 # 在真实场景中，这里应该读写 JSON 文件或 SQLite 数据库
@@ -40,9 +43,19 @@ def read_root():
 @app.post("/api/query")
 def query_data(request: QueryRequest):
     """
-    接收自然语言，返回图表数据
+    接收自然语言，返回图表/分析数据。
+    若配置了 GENAI_API_KEY，则使用 Gemini 意图路由 + 取数/分析；否则使用规则引擎。
     """
-    result = data_engine.process_query(request.text)
+    if gemini_engine._get_client() is not None:
+        history_context = "无历史对话。"
+        if request.history:
+            history_context = gemini_engine.get_history_context(request.history, turn_limit=3)
+        result = gemini_engine.process_query_with_gemini(
+            request.text,
+            history_context=history_context,
+        )
+    else:
+        result = data_engine.process_query(request.text)
     if "error" in result:
         raise HTTPException(status_code=400, detail=result["error"])
     return result

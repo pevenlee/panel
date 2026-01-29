@@ -3,8 +3,12 @@ import axios from 'axios';
 const API_BASE_URL = 'http://localhost:8000/api';
 
 export const chatApi = {
-  queryData: async (text) => {
-    const response = await axios.post(`${API_BASE_URL}/query`, { text });
+  queryData: async (text, history = null) => {
+    const body = { text };
+    if (Array.isArray(history) && history.length > 0) {
+      body.history = history;
+    }
+    const response = await axios.post(`${API_BASE_URL}/query`, body);
     return response.data;
   },
   getDashboards: async () => {
