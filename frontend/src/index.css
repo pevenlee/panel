@@ -2,30 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 自定义滚动条样式 */
+/* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(148, 163, 184, 0.3);
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(148, 163, 184, 0.5);
+  width: 6px;
+  height: 6px;
 }
 
-/* 动画效果 */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.3);
+  border-radius: 99px;
+  transition: background-color 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(99, 102, 241, 0.5);
+  /* Indigo-500/50 */
+}
+
+/* Glassmorphism Utility */
+.glass {
+  @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-sm;
+}
+
+.glass-dark {
+  @apply bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -33,26 +46,45 @@
 }
 
 .animate-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .slide-in-from-bottom-2 {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* 平滑过渡 */
+/* Global Transition */
 * {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 200ms;
 }
 
-/* 选中文本样式 */
+/* Selection */
 ::selection {
-  background-color: rgba(249, 115, 22, 0.2);
+  background-color: rgba(99, 102, 241, 0.2);
+  /* Indigo selection */
   color: inherit;
+}
+
+/* React Grid Layout Smooth Transitions */
+.react-grid-layout {
+  transition: height 0.3s ease-out !important;
+}
+
+.react-grid-item {
+  transition: transform 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out !important;
+}
+
+.react-grid-item.cssTransforms {
+  transition: transform 0.3s ease-out, width 0.3s ease-out, height 0.3s ease-out !important;
+}
+
+.react-grid-item.resizing,
+.react-grid-item.react-draggable-dragging {
+  transition: none !important;
 }

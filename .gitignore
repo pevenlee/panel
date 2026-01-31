@@ -1,0 +1,14 @@
+# 环境变量（含 API Key，勿提交）
+.env
+backend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Node
+frontend/node_modules/
