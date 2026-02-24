@@ -1,7 +1,15 @@
 
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import ChatMessageItem from './ChatMessageItem';
 import { chatApi } from './services/api';
 import ChartRenderer from './components/ChartRenderer';
+import SkillsAdmin from './components/SkillsAdmin';
+import ToolTester from './components/ToolTester';
+import ResearchPlanEditor from './components/ResearchPlanEditor';
+import ToolboxManagement from './components/ToolboxManagement';
+import MarketAnalysis from './components/MarketAnalysis';
+import PptSlideEditor from './components/PptSlideEditor';
+import { message } from 'antd';
 import {
   MessageSquare,
   Bot,
@@ -40,7 +48,12 @@ import {
   ChevronUp, // Added for collapse
   FileText, // Added for Report
   CheckCircle2, // Added for Plan Confirmation
-  Globe // Added for Research
+  Globe, // Added for Research
+  Settings, // Added for Skills Management
+  GripVertical, // Added for draggable input
+  Code, // Added for code display
+  TrendingUp, // Added for Market Analysis
+  Presentation // PPT 编辑
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Responsive } from 'react-grid-layout';
@@ -78,13 +91,32 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-const THEME = {
-  primaryGradient: 'from-indigo-600 to-violet-600',
-  primarySolid: '#4f46e5', // Indigo 600
-  secondaryGradient: 'from-orange-400 to-pink-500',
-  sidebarGradient: 'from-slate-900 via-slate-800 to-indigo-950',
-  glass: 'bg-white/80 backdrop-blur-md border border-white/20',
+// Copy Button Component
+const CopyButton = ({ text }) => {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors"
+      title="复制"
+    >
+      {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+    </button>
+  );
 };
+
+import { THEME } from './theme';
 
 // 将后端返回的 records（列表 of 对象）转为 ChartRenderer 表格/图表用的 [{ name, value }]
 function recordsToChartData(records) {
@@ -143,16 +175,51 @@ const getOptimalGridSpan = (chartType, data) => {
 export default function ChatBIApp() {
   console.log('[ChatBIApp] Rendering...');
 
-  // UI State
-  const [messages, setMessages] = useState([]);
-  const [researchMessages, setResearchMessages] = useState([]); // Independent state for Research Module
-  const [input, setInput] = useState('');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [intentPhase, setIntentPhase] = useState('identifying'); // 'identifying' | 'analysis' | 'extract'
-  const abortControllerRef = useRef(null);
-
-  // Module State
+  // Module State - 必须在使用前定义
   const [currentModule, setCurrentModule] = useState('dashboard'); // 'dashboard' | 'research' | 'report'
+
+  // UI State - 数据看板与报告生产各自完全独立
+  const [dashboardMessages, setDashboardMessages] = useState([]); // 数据看板：hcm + structure
+  const [reportMessages, setReportMessages] = useState([]);      // 报告生产：ipm + fact
+  const [researchMessages, setResearchMessages] = useState([]); // 市场调研模块独立
+
+  // 独立的输入状态
+  const [dashboardInput, setDashboardInput] = useState('');
+  const [reportInput, setReportInput] = useState('');
+
+  // 独立的处理状态
+  const [dashboardIsProcessing, setDashboardIsProcessing] = useState(false);
+  const [reportIsProcessing, setReportIsProcessing] = useState(false);
+
+  // 独立的意图阶段状态
+  const [dashboardIntentPhase, setDashboardIntentPhase] = useState('');
+  const [reportIntentPhase, setReportIntentPhase] = useState('');
+
+  // 独立的 AbortController
+  const dashboardAbortRef = useRef(null);
+  const reportAbortRef = useRef(null);
+
+  // 根据当前模块选择对应状态
+  const messages = currentModule === 'dashboard' ? dashboardMessages : reportMessages;
+  const setCurrentModuleMessages = currentModule === 'dashboard' ? setDashboardMessages : setReportMessages;
+  const input = currentModule === 'dashboard' ? dashboardInput : reportInput;
+  const setInput = currentModule === 'dashboard' ? setDashboardInput : setReportInput;
+  const isProcessing = currentModule === 'dashboard' ? dashboardIsProcessing : reportIsProcessing;
+  const setIsProcessing = currentModule === 'dashboard' ? setDashboardIsProcessing : setReportIsProcessing;
+  const intentPhase = currentModule === 'dashboard' ? dashboardIntentPhase : reportIntentPhase;
+  const setIntentPhase = currentModule === 'dashboard' ? setDashboardIntentPhase : setReportIntentPhase;
+  const abortControllerRef = currentModule === 'dashboard' ? dashboardAbortRef : reportAbortRef;
+
+  const appendToModule = useCallback((msg, module) => {
+    if (module === 'dashboard') setDashboardMessages(prev => [...prev, msg]);
+    else setReportMessages(prev => [...prev, msg]);
+  }, []);
+
+  // Research Plan State
+  const [researchPlan, setResearchPlan] = useState(null);
+
+  // Toolbox Management State
+  const [showToolboxManagement, setShowToolboxManagement] = useState(false);
 
 
   // Flow State
@@ -271,6 +338,35 @@ export default function ChatBIApp() {
   const [dashboardInsight, setDashboardInsight] = useState(null);
   const [isInsightCollapsed, setIsInsightCollapsed] = useState(false);
 
+  // 调研输入框位置状态
+  const [researchInputPos, setResearchInputPos] = useState({ x: null, y: null }); // null表示使用默认居中位置
+  const [isResearchInputDragging, setIsResearchInputDragging] = useState(false);
+  const [researchInputDragOffset, setResearchInputDragOffset] = useState({ x: 0, y: 0 });
+
+  // 调研输入框拖动事件处理
+  useEffect(() => {
+    if (!isResearchInputDragging) return;
+
+    const handleMouseMove = (e) => {
+      setResearchInputPos({
+        x: e.clientX - researchInputDragOffset.x,
+        y: e.clientY - researchInputDragOffset.y
+      });
+    };
+
+    const handleMouseUp = () => {
+      setIsResearchInputDragging(false);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResearchInputDragging, researchInputDragOffset]);
+
   // Measure dashboard container width for responsive grid (debounced for smooth transitions)
   useEffect(() => {
     const container = dashboardContainerRef.current;
@@ -302,7 +398,7 @@ export default function ChatBIApp() {
       if (rafId) cancelAnimationFrame(rafId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isDashboardExpanded, isDashboardFullscreen]);
+  }, [isDashboardExpanded, isDashboardFullscreen, currentModule]);
 
   // Shared View State
   const [isSharedView, setIsSharedView] = useState(false);
@@ -435,14 +531,17 @@ export default function ChatBIApp() {
     if (liveDashboardItems.length === 0 || isGeneratingInsight) return;
     setIsGeneratingInsight(true);
     setIsInsightCollapsed(false);
+    setDashboardInsight(null); // 清空旧洞察
     try {
       const res = await chatApi.generateDashboardInsight(liveDashboardItems);
-      if (res.insight) {
+      if (res && res.insight) {
         setDashboardInsight(res.insight);
+      } else {
+        setDashboardInsight("洞察生成完成，但未返回有效内容。请检查看板中是否有数据图表。");
       }
     } catch (e) {
       console.error("Failed to generate insight", e);
-      alert("洞察生成失败，请重试");
+      setDashboardInsight(`洞察生成失败: ${e.response?.data?.detail || e.message || '请重试'}`);
     } finally {
       setIsGeneratingInsight(false);
     }
@@ -523,69 +622,75 @@ export default function ChatBIApp() {
     setIsSidebarOpen(true);
   };
 
-  /* 处理发送消息 */
+  /* 处理发送消息（数据看板 / 报告生产 各自历史，不互通） */
   const handleSend = async (text = input) => {
     if ((!text || !text.trim()) && !input) return;
     const query = typeof text === 'string' ? text : input;
+    const moduleForRequest = currentModule; // 固定本次请求所属模块，避免异步中切换模块串话
+
+    // 根据模块固定状态设置函数，避免异步期间切换模块导致状态错乱
+    const setModuleInput = moduleForRequest === 'dashboard' ? setDashboardInput : setReportInput;
+    const setModuleIsProcessing = moduleForRequest === 'dashboard' ? setDashboardIsProcessing : setReportIsProcessing;
+    const setModuleIntentPhase = moduleForRequest === 'dashboard' ? setDashboardIntentPhase : setReportIntentPhase;
+    const moduleAbortRef = moduleForRequest === 'dashboard' ? dashboardAbortRef : reportAbortRef;
 
     // 如果处于自定义图表输入模式
     if (waitingForCustomChart && pendingChartConfig) {
-      const userMsg = { role: 'user', content: query };
-      setMessages(prev => [...prev, userMsg]);
-      setInput('');
+      appendToModule({ role: 'user', content: query }, moduleForRequest);
+      setModuleInput('');
       handleCustomChartSubmit(query);
       return;
     }
 
     // 如果有正在进行的请求，先中止
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
+    if (moduleAbortRef.current) {
+      moduleAbortRef.current.abort();
     }
-    abortControllerRef.current = new AbortController();
-    const signal = abortControllerRef.current.signal;
+    moduleAbortRef.current = new AbortController();
+    const signal = moduleAbortRef.current.signal;
 
-    setInput('');
-    setIsProcessing(true);
-    setIntentPhase('identifying');
+    setModuleInput('');
+    setModuleIsProcessing(true);
+    setModuleIntentPhase('identifying');
     setPendingChartConfig(null);
 
-    // 添加用户消息
-    setMessages(prev => [...prev, { role: 'user', content: query }]);
+    // 添加用户消息到当前模块对话
+    appendToModule({ role: 'user', content: query }, moduleForRequest);
+
+    const sourceList = moduleForRequest === 'dashboard' ? dashboardMessages : reportMessages;
+    const listWithUser = [...sourceList, { role: 'user', content: query }];
+    const history = listWithUser.slice(-6).map((msg) => {
+      if (msg.type === 'table_result' && msg.dataResult) {
+        return { role: 'assistant', type: 'report_block', content: { mode: 'simple', summary: msg.dataResult.summary || { intent: '', logic: '' } } };
+      }
+      if (msg.type === 'chart_result' && msg.chartResult) {
+        return { role: 'assistant', type: 'report_block', content: { mode: 'simple', summary: { intent: msg.chartResult.title, logic: '' } } };
+      }
+      return { role: msg.role, type: msg.type || 'text', content: typeof msg.content === 'string' ? msg.content : '' };
+    });
 
     try {
-      // 将最近几条消息转为后端历史上下文格式（供 Gemini 使用）
-      const history = messages.slice(-6).map((msg) => {
-        if (msg.type === 'table_result' && msg.dataResult) {
-          return { role: 'assistant', type: 'report_block', content: { mode: 'simple', summary: msg.dataResult.summary || { intent: '', logic: '' } } };
-        }
-        if (msg.type === 'chart_result' && msg.chartResult) {
-          return { role: 'assistant', type: 'report_block', content: { mode: 'simple', summary: { intent: msg.chartResult.title, logic: '' } } };
-        }
-        return { role: msg.role, type: msg.type || 'text', content: typeof msg.content === 'string' ? msg.content : '' };
-      });
-
-      // 步骤 1: 快速识别意图
       const intentRes = await chatApi.identifyIntent(query, history, signal);
 
       if (intentRes.intent === 'irrelevant') {
-        setIntentPhase('irrelevant');
-        setMessages(prev => [...prev, {
+        setModuleIntentPhase('irrelevant');
+        appendToModule({
           role: 'assistant',
           content: '抱歉，我只能回答与医药及市场数据相关的问题。请尝试询问关于销售额、市场份额或产品表现等内容。'
-        }]);
-        return; // Stop processing
+        }, moduleForRequest);
+        return;
       }
 
       if (intentRes.intent === 'analysis') {
-        setIntentPhase('analysis');
+        setModuleIntentPhase('analysis');
       } else {
-        setIntentPhase('extract');
+        setModuleIntentPhase('extract');
       }
 
-      // 步骤 2: 执行具体查询
-      const result = await chatApi.queryData(query, history, null, signal);
+      // 数据看板传 'dashboard'（hcm+structure），报告生产传 'report'（ipm+fact）
+      const moduleParam = moduleForRequest === 'report' ? 'report' : 'dashboard';
+      const result = await chatApi.queryData(query, history, moduleParam, signal);
 
-      // Small delay to show the intent type before showing result
       await new Promise(resolve => setTimeout(resolve, 800));
 
       const aiMsg = {
@@ -594,22 +699,20 @@ export default function ChatBIApp() {
         content: result.mode === 'analysis' ? `分析完成。您可以查看下方多维报告与洞察。` : `已提取数据。您可以点击下方按钮进行操作。`,
         dataResult: { ...result, queryText: query }
       };
-      setMessages(prev => [...prev, aiMsg]);
+      appendToModule(aiMsg, moduleForRequest);
     } catch (err) {
-      if (err.name === 'AbortError' || err.code === 'ERR_CANCELED' || err.message === 'canceled') { // Handle AbortController and Axios cancellations
-        // Restore input
-        setInput(query);
-        // Don't show abort message
+      if (err.name === 'AbortError' || err.code === 'ERR_CANCELED' || err.message === 'canceled') {
+        setModuleInput(query);
       } else {
         console.error('Error:', err);
-        setMessages(prev => [...prev, {
+        appendToModule({
           role: 'assistant',
           content: `出错啦: ${err.response?.data?.detail || err.message} `
-        }]);
+        }, moduleForRequest);
       }
     } finally {
-      setIsProcessing(false);
-      abortControllerRef.current = null;
+      setModuleIsProcessing(false);
+      moduleAbortRef.current = null;
     }
   };
 
@@ -626,27 +729,24 @@ export default function ChatBIApp() {
       content: `已生成${pendingChartConfig.title}。`,
       chartResult: { ...pendingChartConfig, chartType: type }
     };
-    setMessages(prev => [...prev, chartMsg]);
+    setCurrentModuleMessages(prev => [...prev, chartMsg]);
     setPendingChartConfig(null);
   };
 
   // 智能推荐：调用 Gemini API 获取最佳图表类型
   const handleSmartChart = async () => {
     if (!pendingChartConfig) return;
+    const moduleForRequest = currentModule;
     setIsProcessing(true);
     setIntentPhase('charting');
-    setMessages(prev => [...prev, {
-      role: 'assistant',
-      content: '正在智能分析数据，推荐最佳图表类型...'
-    }]);
+    appendToModule({ role: 'assistant', content: '正在智能分析数据，推荐最佳图表类型...' }, moduleForRequest);
 
     try {
-      // 优先使用 fullData（完整多列数据），否则使用 data
       const chartData = pendingChartConfig.fullData || pendingChartConfig.data;
       const result = await chatApi.suggestChart(
         chartData,
         pendingChartConfig.title,
-        ''  // 空字符串表示智能推荐
+        ''
       );
 
       const chartType = result.chartType || 'bar';
@@ -659,13 +759,13 @@ export default function ChatBIApp() {
         content: `智能推荐：${reason} `,
         chartResult: { ...pendingChartConfig, chartType, geminiConfig }
       };
-      setMessages(prev => [...prev, chartMsg]);
+      appendToModule(chartMsg, moduleForRequest);
       setPendingChartConfig(null);
     } catch (err) {
-      setMessages(prev => [...prev, {
+      appendToModule({
         role: 'assistant',
         content: `智能推荐失败: ${err.response?.data?.detail || err.message}，已使用默认柱状图。`
-      }]);
+      }, moduleForRequest);
       // 失败时使用默认柱状图
       const chartMsg = {
         role: 'assistant',
@@ -673,7 +773,7 @@ export default function ChatBIApp() {
         content: `已生成${pendingChartConfig.title}（默认柱状图）`,
         chartResult: { ...pendingChartConfig, chartType: 'bar' }
       };
-      setMessages(prev => [...prev, chartMsg]);
+      appendToModule(chartMsg, moduleForRequest);
       setPendingChartConfig(null);
     } finally {
       setIsProcessing(false);
@@ -695,19 +795,20 @@ export default function ChatBIApp() {
     if (!editingPlanItem) return;
     const { msgIdx, itemIdx, title, description, logic } = editingPlanItem;
 
-    const newMessages = [...messages];
-    const msg = { ...newMessages[msgIdx] };
-    if (msg.dataResult && msg.dataResult.plan) {
-      const dataResult = { ...msg.dataResult };
-      const plan = [...dataResult.plan];
-      // Use description (users natural language) as the logic prompting
-      const newLogic = description;
-      plan[itemIdx] = { ...plan[itemIdx], title, description, logic: newLogic };
-      dataResult.plan = plan;
-      msg.dataResult = dataResult;
-      newMessages[msgIdx] = msg;
-      setMessages(newMessages);
-    }
+    setCurrentModuleMessages(msgs => {
+      const newMessages = [...msgs];
+      const msg = { ...newMessages[msgIdx] };
+      if (msg.dataResult && msg.dataResult.plan) {
+        const dataResult = { ...msg.dataResult };
+        const plan = [...dataResult.plan];
+        const newLogic = description;
+        plan[itemIdx] = { ...plan[itemIdx], title, description, logic: newLogic };
+        dataResult.plan = plan;
+        msg.dataResult = dataResult;
+        newMessages[msgIdx] = msg;
+      }
+      return newMessages;
+    });
     setEditingPlanItem(null);
   };
 
@@ -722,7 +823,7 @@ export default function ChatBIApp() {
 
   const handleSaveRenaming = () => {
     if (renamingHeadersMsgIdx === null) return;
-    setMessages(msgs => {
+    setCurrentModuleMessages(msgs => {
       const newMsgs = [...msgs];
       if (newMsgs[renamingHeadersMsgIdx].dataResult) {
         newMsgs[renamingHeadersMsgIdx].dataResult.columnMapping = { ...pendingColumnMapping };
@@ -744,7 +845,7 @@ export default function ChatBIApp() {
   // 自定义图表：用户输入提示词后调用 API
   const handleCustomChartClick = () => {
     setWaitingForCustomChart(true);
-    setMessages(prev => [...prev, {
+    setCurrentModuleMessages(prev => [...prev, {
       role: 'assistant',
       content: '请输入您的图表要求（如：用折线图展示趋势、用饼图展示占比等）：'
     }]);
@@ -753,12 +854,12 @@ export default function ChatBIApp() {
   // 处理自定义图表的提示词输入
   const handleCustomChartSubmit = async (customPrompt) => {
     if (!pendingChartConfig || !customPrompt.trim()) return;
+    const moduleForRequest = currentModule;
     setIsProcessing(true);
     setIntentPhase('charting');
     setWaitingForCustomChart(false);
 
     try {
-      // 优先使用 fullData（完整多列数据），否则使用 data
       const chartData = pendingChartConfig.fullData || pendingChartConfig.data;
       const result = await chatApi.suggestChart(
         chartData,
@@ -776,13 +877,13 @@ export default function ChatBIApp() {
         content: `自定义图表：${reason} `,
         chartResult: { ...pendingChartConfig, chartType, geminiConfig }
       };
-      setMessages(prev => [...prev, chartMsg]);
+      appendToModule(chartMsg, moduleForRequest);
       setPendingChartConfig(null);
     } catch (err) {
-      setMessages(prev => [...prev, {
+      appendToModule({
         role: 'assistant',
         content: `自定义图表生成失败: ${err.response?.data?.detail || err.message} `
-      }]);
+      }, moduleForRequest);
     } finally {
       setIsProcessing(false);
     }
@@ -893,30 +994,118 @@ export default function ChatBIApp() {
     if (!planItems || planItems.length === 0) return;
     setIsProcessing(true);
 
-    // Add a "Executing" message
-    setResearchMessages(prev => [...prev, { role: 'assistant', content: "正在执行生产计划...", type: 'text' }]);
+    // Accumulated context from all previous steps
+    let accumulatedContext = "";
 
     try {
-      const results = await chatApi.executePlan(planItems);
+      for (let i = 0; i < planItems.length; i++) {
+        const step = planItems[i];
+        const phase = step.phase || `步骤${i + 1}`;
 
-      if (!results || results.length === 0) {
-        setResearchMessages(prev => [...prev, { role: 'assistant', content: "执行完成，但未生成有效数据。", type: 'text' }]);
-      } else {
-        // Add each result as a separate message or a combined block
-        // For now, let's add them as separate chart_result messages
-        results.forEach(res => {
+        // Add progress message for this step
+        setResearchMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `⭐ **正在执行第 ${i + 1}/${planItems.length} 步: ${phase}**\n\n${step.action || step.title || '处理中'}...`,
+          type: 'text'
+        }]);
+
+        // Execute this step via the new API
+        const stepResult = await chatApi.executeResearchStep(step, accumulatedContext, "");
+
+        if (stepResult && !stepResult.error) {
+          // Display the step's output based on output_type
+          if (stepResult.output_type === 'data_table' && stepResult.data) {
+            // Data table output
+            setResearchMessages(prev => [...prev, {
+              role: 'assistant',
+              content: stepResult.title || "数据结果",
+              type: 'chart_result',
+              dataResult: {
+                title: stepResult.title,
+                data: stepResult.data.slice(0, 20),
+                fullData: stepResult.data.slice(0, 50),
+                logicDescription: stepResult.content,
+                mode: 'simple',
+              },
+            }]);
+            // Add to accumulated context
+            accumulatedContext += `\n\n### ${phase} 产出\n${stepResult.content}\n数据预览: ${JSON.stringify(stepResult.data.slice(0, 5))}`;
+          } else if (stepResult.output_type === 'final_report') {
+            // Final markdown report
+            setResearchMessages(prev => [...prev, {
+              role: 'assistant',
+              content: `## 📝 综合分析报告\n\n${stepResult.content}`,
+              type: 'text'
+            }]);
+            accumulatedContext += `\n\n### 综合分析\n${stepResult.content}`;
+          } else {
+            // Text/markdown output (analysis framework, source list, collected info)
+            setResearchMessages(prev => [...prev, {
+              role: 'assistant',
+              content: `### ${phase} 产出\n\n${stepResult.content}`,
+              type: 'text'
+            }]);
+            // Add to accumulated context
+            accumulatedContext += `\n\n### ${phase} 产出\n${stepResult.content}`;
+          }
+        } else {
+          // Error case
           setResearchMessages(prev => [...prev, {
             role: 'assistant',
-            content: "计划执行结果",
-            type: 'chart_result',
-            dataResult: res,
+            content: `⚠️ ${phase} 执行失败: ${stepResult?.content || stepResult?.error || '未知错误'}`,
+            type: 'text'
           }]);
-        });
-        setResearchMessages(prev => [...prev, { role: 'assistant', content: `✅ 已完成 ${results.length} 个表格的生成。`, type: 'text' }]);
+        }
+      }
+
+      // Final completion message
+      setResearchMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `✅ **调研方案执行完成**\n\n共执行 ${planItems.length} 个步骤，正在生成 HTML 报告...`,
+        type: 'text'
+      }]);
+
+      // Generate final HTML report
+      try {
+        // Get the original query from the first user message or use a default
+        const originalQuery = researchMessages.find(m => m.role === 'user')?.content || '市场调研';
+
+        const reportResult = await chatApi.generateResearchReport(originalQuery, accumulatedContext);
+
+        if (reportResult && reportResult.html_content) {
+          // Create a blob and download link
+          const blob = new Blob([reportResult.html_content], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+
+          setResearchMessages(prev => [...prev, {
+            role: 'assistant',
+            content: `📝 **HTML 报告已生成**`,
+            type: 'html_report',
+            reportUrl: url,
+            filename: reportResult.filename || 'research_report.html',
+          }]);
+        } else if (reportResult?.error) {
+          setResearchMessages(prev => [...prev, {
+            role: 'assistant',
+            content: `⚠️ 报告生成失败: ${reportResult.error}`,
+            type: 'text'
+          }]);
+        }
+      } catch (reportError) {
+        console.error('Report generation error:', reportError);
+        setResearchMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `⚠️ 报告生成失败: ${reportError.message}`,
+          type: 'text'
+        }]);
       }
     } catch (e) {
       console.error(e);
-      setResearchMessages(prev => [...prev, { role: 'assistant', content: "执行计划失败: " + e.message, type: 'text' }]);
+      setResearchMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `❌ 执行计划失败: ${e.message}`,
+        type: 'text'
+      }]);
     } finally {
       setIsProcessing(false);
     }
@@ -929,42 +1118,25 @@ export default function ChatBIApp() {
     const promptText = text || input;
     if (!promptText.trim() || isProcessing) return;
 
-    // 1. User Message
-    setResearchMessages(prev => [...prev, { role: 'user', content: promptText, type: 'text' }]);
     setInput('');
     setIsProcessing(true);
+    setIntentPhase('research_plan');
 
-    // 2. Call API
     try {
-      // Use identifying intent first? Or direct query since context is specific?
-      // Reusing standard flow but targeting researchMessages
-      setIntentPhase('identifying');
-
-      // a. Intent Check (Frontend simulated delay or Backend check)
-      // Direct Backend Call
+      // Direct Backend Call for Market Research
       const response = await chatApi.queryData(promptText, researchMessages, 'research');
 
-      // Handle Response
-      const aiMsg = {
-        role: 'assistant',
-        content: response.logicDescription || response.title || "已收到",
-        type: response.mode === 'multi_table' ? 'plan_confirmation' : (response.data ? 'chart_result' : 'text'),
-        dataResult: response.data ? response : null,
-        plan: response.plan,
-        // ... helper fields
-      };
-
-      // Simplify for Research View (Start with just Text + Table/Chart)
       if (response.error) {
-        setResearchMessages(prev => [...prev, { role: 'assistant', content: `Error: ${response.error}`, type: 'text' }]);
+        message.error(`Error: ${response.error}`);
       } else {
-        setResearchMessages(prev => [...prev, aiMsg]);
+        // Update the plan state directly
+        setResearchPlan(response.dataResult || response);
+        message.success("已生成调研方案");
       }
-
     } catch (e) {
       console.error(e);
       const errMsg = e.response?.data?.detail || e.message || "服务暂时不可用";
-      setResearchMessages(prev => [...prev, { role: 'assistant', content: `Error: ${errMsg}`, type: 'text' }]);
+      message.error(`Error: ${errMsg}`);
     } finally {
       setIsProcessing(false);
       setIntentPhase('');
@@ -1011,8 +1183,11 @@ export default function ChatBIApp() {
           <div className="flex items-center gap-1">
             {[
               { id: 'dashboard', name: '数据看板', icon: LayoutDashboard },
+              { id: 'market_analysis', name: '市场分析', icon: TrendingUp },
               { id: 'research', name: '市场调研', icon: Globe },
-              { id: 'report', name: '报告生产', icon: FileText }
+              { id: 'report', name: '报告生产', icon: FileText },
+              { id: 'ppt_editor', name: 'PPT 编辑', icon: Presentation },
+              { id: 'skills', name: '工具测试', icon: Settings }
             ].map(module => (
               <button
                 key={module.id}
@@ -1178,10 +1353,13 @@ export default function ChatBIApp() {
                           </div>
                           <h1 className="text-2xl font-bold text-slate-700 mb-2">有什么可以帮您？</h1>
                           <p className="text-slate-500 max-w-md mb-8">
-                            您可以直接提问，或点击下方预设问题开始探索：
+                            {currentModule === 'dashboard' ? '数据看板使用 HCM/架构数据，' : '报告生产使用 IPM/Fact 数据，'}可直接提问或点击预设问题：
                           </p>
                           <div className="flex flex-wrap justify-center gap-3 w-full max-w-2xl">
-                            {["康缘各个省份的市场表现如何？", "康缘的每个定义市场的份额是多少?", "康缘的每个大区的整体市场表现如何？"].map((q, i) => (
+                            {(currentModule === 'dashboard'
+                              ? ["康缘各个省份的市场表现如何？", "康缘的每个定义市场的份额是多少?", "康缘的每个大区的整体市场表现如何？"]
+                              : ["各渠道销售趋势如何？", "医院与零售渠道份额对比？", "康缘的每个定义市场的份额是多少？"]
+                            ).map((q, i) => (
                               <button
                                 key={i}
                                 onClick={() => handleSend(q)}
@@ -1195,407 +1373,26 @@ export default function ChatBIApp() {
                       )}
 
                       {messages.map((msg, idx) => (
-                        <div key={idx} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-                          {/* Avatar */}
-                          <div className="flex-shrink-0">
-                            {msg.role === 'user' ? (
-                              <img src="/user-avatar.jpg" alt="User" className="w-9 h-9 rounded-full object-cover shadow-sm" />
-                            ) : (
-                              <img src="/pmc-icon.png" alt="AI" className="w-9 h-9 rounded-full object-cover shadow-sm bg-white" />
-                            )}
-                          </div>
-                          {/* Message Content */}
-                          <div
-                            className={`max-w-[85%] p-4 shadow-sm text-sm leading-relaxed transition-all ${msg.role === 'user'
-                              ? `bg-gradient-to-br ${THEME.primaryGradient} text-white rounded-2xl rounded-tr-sm shadow-indigo-200`
-                              : msg.role === 'system'
-                                ? 'bg-gradient-to-br from-slate-50 to-indigo-50/50 border border-indigo-100/50 text-slate-700 rounded-2xl rounded-tl-sm'
-                                : msg.content.includes('查询出错') || msg.content.includes('出错啦') || msg.content.includes('已中止生成')
-                                  ? 'bg-red-50/50 border border-red-100 text-red-700 rounded-2xl rounded-tl-sm'
-                                  : 'bg-white border border-slate-100 text-slate-700 rounded-2xl rounded-tl-sm shadow-sm'
-                              } `}
-                          >
-                            {msg.content}
-
-                            {/* Table Result in Chat：支持 simple（summary + tables）与 analysis（intent_analysis + angles + insight） */}
-                            {msg.type === 'table_result' && msg.dataResult && (() => {
-                              const dr = msg.dataResult;
-                              const isAnalysis = dr.mode === 'analysis';
-                              return (
-                                <div className="mt-4 space-y-4">
-                                  {/* Simple 模式：摘要 + 主表 + 多表 */}
-                                  {dr.mode === 'simple' && (() => {
-                                    const uiId = `msg_${idx} _main`;
-                                    const isConfiguring = pendingChartConfig?._uiId === uiId;
-                                    return (
-                                      <>
-                                        {dr.summary && (dr.summary.intent || dr.summary.logic) && (
-                                          <div className="bg-blue-50/80 border border-blue-100 rounded-lg p-3 text-sm text-slate-700">
-                                            {dr.summary.intent && <p className="font-medium text-slate-800 mb-1">{dr.summary.intent}</p>}
-                                            {(dr.summary.scope || dr.summary.metrics) && <p className="text-xs text-slate-600">{[dr.summary.scope, dr.summary.metrics].filter(Boolean).join(' · ')}</p>}
-                                            {dr.summary.logic && <p className="text-xs text-slate-500 mt-1">{dr.summary.logic}</p>}
-                                          </div>
-                                        )}
-                                        <div className="bg-slate-50 rounded border border-slate-200 p-2 mb-2 relative group">
-                                          <button onClick={() => setExpandedChart({ ...dr, data: dr.fullData || dr.data, type: 'table' })} className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-white text-slate-400 hover:text-blue-600 rounded-md shadow-sm border border-slate-100 opacity-0 group-hover:opacity-100 transition-all z-10" title="放大查看"><Maximize2 className="w-3.5 h-3.5" /></button>
-                                          <div className="text-xs text-slate-400 mb-1 font-mono">{dr.logicDescription || '数据查询结果'}</div>
-                                          <ChartRenderer type="table" data={dr.fullData || dr.data || []} title={dr.title} height={180} />
-                                        </div>
-                                        {dr.tables && Object.keys(dr.tables).length > 1 && (
-                                          <div className="space-y-2">
-                                            <div className="text-xs font-semibold text-slate-500">其他结果表</div>
-                                            {Object.entries(dr.tables).filter(([k]) => k !== dr.title).map(([tableName, rows]) => (
-                                              <div key={tableName} className="border border-slate-200 rounded-lg overflow-hidden">
-                                                <div className="bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600">{tableName}</div>
-                                                <GenericTable records={rows} maxHeight={160} />
-                                              </div>
-                                            ))}
-                                          </div>
-                                        )}
-
-                                        {isConfiguring ? (
-                                          <div className="flex gap-2 animate-in fade-in slide-in-from-top-1">
-                                            <button
-                                              onClick={handleSmartChart}
-                                              disabled={isProcessing}
-                                              className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-all disabled:opacity-50"
-                                            >
-                                              <Sparkles className="w-3.5 h-3.5" /> 智能推荐
-                                            </button>
-                                            <button
-                                              onClick={handleCustomChartClick}
-                                              disabled={isProcessing}
-                                              className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-xs font-semibold rounded-lg transition-all"
-                                            >
-                                              <Wand2 className="w-3.5 h-3.5" /> 自定义
-                                            </button>
-                                            <button
-                                              onClick={() => setPendingChartConfig(null)}
-                                              className="px-3 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg transition-colors"
-                                            >
-                                              <X className="w-4 h-4" />
-                                            </button>
-                                          </div>
-                                        ) : (
-                                          <div className="flex gap-2">
-                                            <button onClick={() => addToDashboard(dr, 'table')} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg"><Plus className="w-3.5 h-3.5" /> 保存表格</button>
-                                            <button onClick={() => handleStartRenaming(idx, dr)} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg"><Edit3 className="w-3.5 h-3.5" /> 重命名</button>
-                                            <button onClick={() => handleRequestChart({ ...dr, _uiId: uiId })} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg"><Activity className="w-3.5 h-3.5" /> 生成图表</button>
-                                          </div>
-                                        )}
-                                        {renamingHeadersMsgIdx === idx && (
-                                          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm">
-                                            <div className="bg-white rounded-xl shadow-2xl border border-slate-200 w-96 overflow-hidden animate-in zoom-in-95 duration-200">
-                                              <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-                                                <h3 className="font-semibold text-slate-700">重命名表头</h3>
-                                                <button onClick={cancelRenaming} className="text-slate-400 hover:text-slate-600"><X className="w-4 h-4" /></button>
-                                              </div>
-                                              <div className="p-4 max-h-[60vh] overflow-y-auto space-y-3">
-                                                {Object.keys(dr.fullData?.[0] || dr.data?.[0] || {}).map(col => (
-                                                  <div key={col} className="space-y-1">
-                                                    <label className="text-xs font-medium text-slate-500">{col}</label>
-                                                    <input
-                                                      type="text"
-                                                      value={pendingColumnMapping[col] || dr.dataResult?.columnMapping?.[col] || (dr.columnMapping && dr.columnMapping[col]) || col}
-                                                      onChange={e => setPendingColumnMapping(prev => ({ ...prev, [col]: e.target.value }))}
-                                                      className="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-mono"
-                                                      placeholder="新列名..."
-                                                    />
-                                                  </div>
-                                                ))}
-                                              </div>
-                                              <div className="px-4 py-3 bg-slate-50 border-t border-slate-200 flex gap-2 justify-end">
-                                                <button onClick={cancelRenaming} className="px-3 py-1.5 text-xs font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors">取消</button>
-                                                <button onClick={handleSaveRenaming} className="px-3 py-1.5 text-xs font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-colors">保存更改</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        )}
-                                      </>
-                                    );
-                                  })()}
-
-                                  {/* Plan Confirmation Mode */}
-                                  {dr.mode === 'plan_confirmation' && (
-                                    <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
-                                      <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-                                        <h3 className="font-semibold text-slate-700">{dr.title || '生产计划确认'}</h3>
-                                        <span className="text-xs text-slate-500 bg-slate-200 px-2 py-0.5 rounded-full">{dr.plan?.length || 0} 个表格</span>
-                                      </div>
-                                      <div className="p-4 space-y-3">
-                                        <p className="text-sm text-slate-600 mb-2">{dr.logicDescription}</p>
-                                        <div className="space-y-2">
-                                          {dr.plan?.map((item, pIdx) => {
-                                            const isEditing = editingPlanItem?.msgIdx === idx && editingPlanItem?.itemIdx === pIdx;
-                                            return (
-                                              <div key={pIdx} className="flex gap-3 p-3 bg-slate-50 rounded border border-slate-100 items-start group">
-                                                <div className="mt-0.5 w-5 h-5 flex items-center justify-center bg-blue-100 text-blue-600 rounded-full text-xs font-bold shrink-0">
-                                                  {pIdx + 1}
-                                                </div>
-                                                <div className="flex-1">
-                                                  {isEditing ? (
-                                                    <div className="space-y-2 animate-in fade-in zoom-in-95 duration-200">
-                                                      <input
-                                                        className="w-full text-sm font-medium border border-blue-300 rounded px-2 py-1.5 focus:ring-2 focus:ring-blue-200 focus:border-blue-400 outline-none"
-                                                        value={editingPlanItem.title}
-                                                        onChange={e => setEditingPlanItem({ ...editingPlanItem, title: e.target.value })}
-                                                        placeholder="表格标题"
-                                                      />
-                                                      <textarea
-                                                        className="w-full text-xs text-slate-600 border border-blue-300 rounded px-2 py-1.5 min-h-[80px] focus:ring-2 focus:ring-blue-200 focus:border-blue-400 outline-none resize-none"
-                                                        value={editingPlanItem.description}
-                                                        onChange={e => setEditingPlanItem({ ...editingPlanItem, description: e.target.value })}
-                                                        placeholder="请输入目标内容 (自然语言)..."
-                                                      />
-                                                      <div className="flex gap-2 justify-end">
-                                                        <button onClick={handleSavePlanItem} className="flex items-center gap-1 px-2 py-1 bg-green-50 text-green-600 hover:bg-green-100 rounded text-xs font-medium border border-green-200 transition-colors"><Check className="w-3.5 h-3.5" /> 保存</button>
-                                                        <button onClick={() => setEditingPlanItem(null)} className="flex items-center gap-1 px-2 py-1 bg-slate-100 text-slate-500 hover:bg-slate-200 rounded text-xs font-medium transition-colors"><X className="w-3.5 h-3.5" /> 取消</button>
-                                                      </div>
-                                                    </div>
-                                                  ) : (
-                                                    <>
-                                                      <div className="flex justify-between items-start">
-                                                        <div className="font-medium text-slate-800 text-sm">{item.title}</div>
-                                                        <button
-                                                          onClick={() => handleEditPlanItem(idx, pIdx, item)}
-                                                          className="p-1 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-all opacity-0 group-hover:opacity-100"
-                                                          title="编辑生成逻辑"
-                                                        >
-                                                          <Edit2 className="w-3.5 h-3.5" />
-                                                        </button>
-                                                      </div>
-                                                      <div className="text-xs text-slate-500 mt-1">{item.description}</div>
-                                                      <div className="text-xs text-slate-400 mt-1 italic group-hover:text-slate-500 transition-colors">
-                                                        逻辑: {item.logic}
-                                                      </div>
-                                                    </>
-                                                  )}
-                                                </div>
-                                              </div>
-                                            );
-                                          })}
-                                        </div>
-                                        <div className="pt-2 flex justify-end">
-                                          <button
-                                            onClick={() => handleExecutePlan(dr.plan)}
-                                            disabled={isProcessing}
-                                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors disabled:opacity-50"
-                                          >
-                                            {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />}
-                                            确认并生产所有表格
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  )}
-
-                                  {/* Analysis 模式：意图解析 + 多角度 + 综合洞察 */}
-                                  {isAnalysis && (
-                                    <>
-                                      {dr.intent_analysis && (
-                                        <div className="bg-indigo-50/80 border border-indigo-100 rounded-lg p-3 text-sm text-slate-700">
-                                          <ReactMarkdown components={{
-                                            strong: ({ node, ...props }) => <span className="font-semibold text-indigo-700" {...props} />,
-                                            ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1" {...props} />,
-                                            ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1" {...props} />,
-                                            p: ({ node, ...props }) => <div className="mb-1 last:mb-0" {...props} />
-                                          }}>{dr.intent_analysis}</ReactMarkdown>
-                                        </div>
-                                      )}
-                                      {Array.isArray(dr.angles) && dr.angles.length > 0 && dr.angles.map((angle, aIdx) => {
-                                        const hasNameValue = angle.data && angle.data[0] && angle.data[0].name != null && angle.data[0].value != null;
-                                        const chartData = hasNameValue ? angle.data : recordsToChartData(angle.data || []);
-                                        const multiCol = angle.data && angle.data[0] && Object.keys(angle.data[0]).length > 2 && !hasNameValue;
-                                        const itemConfig = { title: angle.title, data: chartData, config: { dimension: 'name', metric: 'value' } };
-
-                                        const uiId = `msg_${idx}_angle_${aIdx} `;
-                                        const isConfiguring = pendingChartConfig?._uiId === uiId;
-
-                                        return (
-                                          <div key={aIdx} className="border border-slate-200 rounded-lg overflow-hidden bg-white">
-                                            <div className="bg-slate-50 px-3 py-2 border-b border-slate-200 flex items-center justify-between">
-                                              <span className="font-semibold text-slate-700">{angle.title}</span>
-                                              <div className="flex gap-1">
-                                                <button onClick={() => addToDashboard(itemConfig, 'table')} className="p-1.5 rounded bg-white border border-slate-200 hover:bg-slate-100 text-slate-500" title="保存表格"><Plus className="w-3.5 h-3.5" /></button>
-                                                <button onClick={() => handleRequestChart({ ...itemConfig, _uiId: uiId })} className="p-1.5 rounded bg-blue-50 hover:bg-blue-100 text-blue-600" title="生成图表"><Activity className="w-3.5 h-3.5" /></button>
-                                              </div>
-                                            </div>
-                                            {angle.desc && <p className="px-3 py-1 text-xs text-slate-500 border-b border-slate-100">{angle.desc}</p>}
-                                            <div className="p-2">
-                                              {multiCol ? <GenericTable records={angle.data} maxHeight={160} /> : (chartData.length > 0 ? <ChartRenderer type="table" data={chartData} title={angle.title} height={160} /> : <GenericTable records={angle.data || []} maxHeight={160} />)}
-                                            </div>
-
-                                            {isConfiguring && (
-                                              <div className="px-2 pb-2 flex gap-2 animate-in fade-in slide-in-from-top-1 border-t border-slate-50 pt-2">
-                                                <button
-                                                  onClick={handleSmartChart}
-                                                  disabled={isProcessing}
-                                                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-all disabled:opacity-50"
-                                                >
-                                                  <Sparkles className="w-3.5 h-3.5" /> 智能推荐
-                                                </button>
-                                                <button
-                                                  onClick={handleCustomChartClick}
-                                                  disabled={isProcessing}
-                                                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-xs font-semibold rounded-lg transition-all"
-                                                >
-                                                  <Wand2 className="w-3.5 h-3.5" /> 自定义
-                                                </button>
-                                                <button
-                                                  onClick={() => setPendingChartConfig(null)}
-                                                  className="px-2 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg transition-colors"
-                                                >
-                                                  <X className="w-4 h-4" />
-                                                </button>
-                                              </div>
-                                            )}
-
-                                            {angle.explanation && <div className="px-3 py-2 bg-amber-50/50 border-t border-slate-100 text-xs text-slate-600">{angle.explanation}</div>}
-                                          </div>
-                                        );
-                                      })}
-                                      {dr.insight && (
-                                        <div className="bg-amber-50/80 border border-amber-100 rounded-lg p-3 text-sm text-slate-700">
-                                          <span className="font-semibold text-slate-800 block mb-2">综合洞察</span>
-                                          <ReactMarkdown components={{
-                                            strong: ({ node, ...props }) => <span className="font-semibold text-indigo-700" {...props} />,
-                                            ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1" {...props} />,
-                                            ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1" {...props} />,
-                                            p: ({ node, ...props }) => <div className="mb-1 last:mb-0 leading-relaxed" {...props} />
-                                          }}>{dr.insight}</ReactMarkdown>
-                                        </div>
-                                      )}
-                                      {/* 主图表数据仍可保存/生成图表（第一个角度的数据） */}
-                                      {dr.data && dr.data.length > 0 && (() => {
-                                        const uiId = `msg_${idx} _analysis_main`;
-                                        const isConfiguring = pendingChartConfig?._uiId === uiId;
-                                        return (
-                                          <>
-                                            {isConfiguring ? (
-                                              <div className="flex gap-2 pt-2 border-t border-slate-200 animate-in fade-in slide-in-from-top-1">
-                                                <button
-                                                  onClick={handleSmartChart}
-                                                  disabled={isProcessing}
-                                                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-all disabled:opacity-50"
-                                                >
-                                                  <Sparkles className="w-3.5 h-3.5" /> 智能推荐
-                                                </button>
-                                                <button
-                                                  onClick={handleCustomChartClick}
-                                                  disabled={isProcessing}
-                                                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-xs font-semibold rounded-lg transition-all"
-                                                >
-                                                  <Wand2 className="w-3.5 h-3.5" /> 自定义
-                                                </button>
-                                                <button
-                                                  onClick={() => setPendingChartConfig(null)}
-                                                  className="px-3 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg transition-colors"
-                                                >
-                                                  <X className="w-4 h-4" />
-                                                </button>
-                                              </div>
-                                            ) : (
-                                              <div className="flex gap-2 pt-2 border-t border-slate-200">
-                                                <button onClick={() => addToDashboard(dr, 'table')} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg"><Plus className="w-3.5 h-3.5" /> 保存主表</button>
-                                                <button onClick={() => handleRequestChart({ ...dr, _uiId: uiId })} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg"><Activity className="w-3.5 h-3.5" /> 生成主图表</button>
-                                              </div>
-                                            )}
-                                          </>
-                                        );
-                                      })()}
-                                    </>
-                                  )}
-
-                                  {/* 非 simple/analysis（如规则引擎返回）：仅主表 + 按钮 */}
-                                  {dr.mode !== 'simple' && dr.mode !== 'plan' && !isAnalysis && dr.data && dr.data.length > 0 && (() => {
-                                    const uiId = `msg_${idx} _fallback`;
-                                    const isConfiguring = pendingChartConfig?._uiId === uiId;
-                                    return (
-                                      <>
-                                        <div className="bg-slate-50 rounded border border-slate-200 p-2 mb-2 relative group">
-                                          <button onClick={() => setExpandedChart({ ...dr, data: dr.fullData || dr.data, type: 'table' })} className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-white text-slate-400 hover:text-blue-600 rounded-md shadow-sm border border-slate-100 opacity-0 group-hover:opacity-100 transition-all z-10" title="放大查看"><Maximize2 className="w-3.5 h-3.5" /></button>
-                                          <div className="text-xs text-slate-400 mb-1 font-mono">{dr.logicDescription || '数据查询结果'}</div>
-                                          <ChartRenderer type="table" data={dr.fullData || dr.data || []} title={dr.title} height={180} />
-                                        </div>
-
-                                        {isConfiguring ? (
-                                          <div className="flex gap-2 animate-in fade-in slide-in-from-top-1">
-                                            <button
-                                              onClick={handleSmartChart}
-                                              disabled={isProcessing}
-                                              className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-all disabled:opacity-50"
-                                            >
-                                              <Sparkles className="w-3.5 h-3.5" /> 智能推荐
-                                            </button>
-                                            <button
-                                              onClick={handleCustomChartClick}
-                                              disabled={isProcessing}
-                                              className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-white border border-blue-200 text-blue-700 hover:bg-blue-50 text-xs font-semibold rounded-lg transition-all"
-                                            >
-                                              <Wand2 className="w-3.5 h-3.5" /> 自定义
-                                            </button>
-                                            <button
-                                              onClick={() => setPendingChartConfig(null)}
-                                              className="px-3 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-lg transition-colors"
-                                            >
-                                              <X className="w-4 h-4" />
-                                            </button>
-                                          </div>
-                                        ) : (
-                                          <div className="flex gap-2">
-                                            <button onClick={() => addToDashboard(dr, 'table')} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold rounded-lg"><Plus className="w-3.5 h-3.5" /> 保存表格</button>
-                                            <button onClick={() => handleRequestChart({ ...dr, _uiId: uiId })} className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold rounded-lg"><Activity className="w-3.5 h-3.5" /> 生成图表</button>
-                                          </div>
-                                        )}
-                                      </>
-                                    );
-                                  })()}
-                                </div>
-                              );
-                            })()}
-
-                            {/*
-                  移除独立的 chart_ask 渲染逻辑，因为它现在已经内联到各个表格卡片中了
-                  {msg.type === 'chart_ask' && ( ... )}
-                */}
-
-                            {/* Chart Result in Chat */}
-                            {msg.type === 'chart_result' && msg.chartResult && (
-                              <div className="mt-4">
-                                <div className="bg-white rounded border border-slate-100 p-2 mb-3 relative group">
-                                  {/* Maximize Button for Chart */}
-                                  <button
-                                    onClick={() => setExpandedChart({ ...msg.chartResult, type: msg.chartResult.chartType })}
-                                    className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-white text-slate-400 hover:text-blue-600 rounded-md shadow-sm border border-slate-100 opacity-0 group-hover:opacity-100 transition-all z-10"
-                                    title="放大查看"
-                                  >
-                                    <Maximize2 className="w-3.5 h-3.5" />
-                                  </button>
-
-                                  <ChartRenderer
-                                    type={msg.chartResult.chartType}
-                                    data={msg.chartResult.fullData || msg.chartResult.data || []}
-                                    title={msg.chartResult.title}
-                                    height={180}
-                                    geminiConfig={msg.chartResult.geminiConfig || {}}
-                                  />
-                                </div>
-                                <button
-                                  onClick={() => addToDashboard(msg.chartResult, msg.chartResult.chartType)}
-                                  className={`w-full flex items-center justify-center gap-2 py-2 px-4 text-white text-xs font-semibold rounded-lg shadow-sm transition-all hover:opacity-90 hover:shadow-md bg-gradient-to-r ${THEME.secondaryGradient}`}
-                                >
-                                  <Plus className="w-4 h-4" /> 保存到看板
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                        <ChatMessageItem
+                          key={idx}
+                          msg={msg}
+                          idx={idx}
+                          pendingChartConfig={pendingChartConfig}
+                          setPendingChartConfig={setPendingChartConfig}
+                          setExpandedChart={setExpandedChart}
+                          handleSmartChart={handleSmartChart}
+                          handleCustomChartClick={handleCustomChartClick}
+                          addToDashboard={addToDashboard}
+                          handleRequestChart={handleRequestChart}
+                          handleExecutePlan={handleExecutePlan}
+                        />
                       ))}
+
 
                       {isProcessing && (
                         <div className="flex gap-3 justify-start animate-fade-in pl-0 mt-2">
                           <div className="flex-shrink-0">
-                            <img src="/pmc-icon.png" alt="AI" className="w-9 h-9 rounded-full object-cover shadow-sm bg-white" />
+                            <img src="/pmc-icon.png" alt="AI" className="w-9 h-9 rounded-full object-cover shadow-sm bg-white" onError={(e) => { e.target.onerror = null; e.target.src = 'https://ui-avatars.com/api/?name=AI&background=8b5cf6&color=fff'; }} />
                           </div>
                           <div className="bg-white/90 backdrop-blur-sm rounded-2xl rounded-tl-sm py-3 px-5 shadow-sm border border-slate-100 flex items-center gap-3">
                             <div className="relative">
@@ -1658,7 +1455,8 @@ export default function ChatBIApp() {
                   </>
                 )}
               </div>
-            )}
+            )
+            }
 
 
             <div
@@ -1998,184 +1796,106 @@ export default function ChatBIApp() {
         )}
 
         {/* MODULE: MARKET RESEARCH */}
-        {currentModule === 'research' && (
-          <div className="flex-1 flex flex-col bg-slate-50 h-full relative">
-
-            {/* Research Header */}
-            <div className="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm flex-shrink-0 z-10">
-              <div className="flex items-center gap-2">
-                <Globe className="w-5 h-5 text-blue-600" />
-                <h2 className="text-lg font-bold text-slate-800">市场调研</h2>
-              </div>
-              <div className="text-sm text-slate-500">
-                基于 Fact, IPM, HCM 多源数据分析 v1.0
-              </div>
-            </div>
-
-            {/* Research Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth">
-              {researchMessages.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center -mt-10 animate-in fade-in duration-500">
-                  <div className="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-                    <Globe className="w-12 h-12 text-blue-500" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-700 mb-2">医药市场深度调研</h3>
-                  <p className="text-slate-500 max-w-lg text-center mb-8">
-                    您可以查询财务状况、管线进度、人员架构变化等多维数据。
-                  </p>
-
-                  {/* Preset Questions */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl w-full">
-                    {[
-                      "整理并输出2025年恒瑞、天晴、百济、信达、石药几家公司的财务状况，新增管线，以及人员架构变化",
-                      "分析本月Top 5产品的市场份额及环比增长",
-                      "查询江苏省内销售团队的人员分布情况",
-                      "对比Fact实际销售额与IPM市场数据的差异"
-                    ].map((q, i) => (
-                      <button
-                        key={i}
-                        onClick={() => handleResearchSend(q)}
-                        className="p-4 bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-blue-300 hover:bg-blue-50/50 transition-all text-left group"
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="p-2 bg-blue-100/50 text-blue-600 rounded-lg group-hover:bg-blue-100 transition-colors">
-                            <Sparkles className="w-4 h-4" />
-                          </div>
-                          <span className="text-sm text-slate-700 font-medium group-hover:text-blue-700 transition-colors">{q}</span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="max-w-4xl mx-auto space-y-6 pb-4">
-                  {researchMessages.map((msg, idx) => (
-                    <div key={idx} className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''} animate-in slide-in-from-bottom-2 duration-300`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-indigo-600' : 'bg-gradient-to-br from-blue-500 to-cyan-500'} shadow-sm`}>
-                        {msg.role === 'user' ? <User className="w-5 h-5 text-white" /> : <Bot className="w-5 h-5 text-white" />}
-                      </div>
-
-                      <div className={`flex flex-col gap-2 max-w-[85%] ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
-                        <div className={`px-5 py-3.5 rounded-2xl shadow-sm text-sm leading-relaxed ${msg.role === 'user'
-                          ? 'bg-indigo-600 text-white rounded-tr-sm'
-                          : 'bg-white border border-slate-150 text-slate-700 rounded-tl-sm'
-                          }`}>
-                          {msg.type === 'text' && <ReactMarkdown>{msg.content}</ReactMarkdown>}
-                          {msg.type === 'chart_result' && (
-                            <div className="space-y-3">
-                              <div className="font-semibold border-b border-slate-100 pb-2 mb-2 flex items-center gap-2">
-                                <Activity className="w-4 h-4 text-blue-500" />
-                                {msg.dataResult.title || "分析结果"}
-                              </div>
-                              <div className="text-xs text-slate-500 mb-2">{msg.dataResult.logicDescription}</div>
-                              <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
-                                <ChartRenderer
-                                  type={msg.dataResult.config?.chartType || 'table'}
-                                  data={msg.dataResult.fullData || msg.dataResult.data || []}
-                                  title=""
-                                  height={300}
-                                  geminiConfig={msg.dataResult.config?.geminiConfig || {}}
-                                  columnMapping={msg.dataResult.columnMapping || {}}
-                                />
-                              </div>
-                            </div>
-                          )}
-                          {msg.type === 'plan_confirmation' && (
-                            <div className="space-y-3 w-96">
-                              <div className="font-bold text-slate-800 flex items-center gap-2">
-                                <CheckCircle2 className="w-5 h-5 text-green-500" />
-                                生产计划确认
-                              </div>
-                              <div className="text-slate-600">{msg.dataResult.logicDescription}</div>
-                              <div className="space-y-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                {msg.plan.map((item, i) => (
-                                  <div key={i} className="flex gap-3 text-sm relative">
-                                    {/* Step Number Line */}
-                                    <div className="flex flex-col items-center">
-                                      <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border ${item.source === 'internet' ? 'bg-indigo-50 border-indigo-200 text-indigo-600' : 'bg-blue-50 border-blue-200 text-blue-600'
-                                        }`}>
-                                        {i + 1}
-                                      </div>
-                                      {i < msg.plan.length - 1 && <div className="w-px h-full bg-slate-200 my-1"></div>}
-                                    </div>
-
-                                    <div className="flex-1 pb-2">
-                                      <div className="flex items-center gap-2 mb-1">
-                                        <div className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide border ${item.source === 'internet'
-                                          ? 'bg-indigo-100/50 text-indigo-700 border-indigo-200'
-                                          : 'bg-blue-100/50 text-blue-700 border-blue-200'
-                                          }`}>
-                                          {item.source === 'internet' ? 'WEB SEARCH' : 'DATABASE'}
-                                        </div>
-                                        <div className="font-semibold text-slate-700">{item.action || item.title}</div>
-                                      </div>
-                                      <div className="text-slate-500 text-xs leading-relaxed">{item.rationale || item.description}</div>
-                                      {item.key_question && (
-                                        <div className="mt-1 text-xs text-slate-400 italic">
-                                          Target: {item.key_question}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                              <button
-                                onClick={() => handleExecutePlan(msg.plan)}
-                                className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-2"
-                                disabled={isProcessing}
-                              >
-                                {isProcessing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Check className="w-3 h-3" />}
-                                确认并执行计划
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  {isProcessing && (
-                    <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-2">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-sm">
-                        <Bot className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="bg-white border border-slate-150 px-5 py-3.5 rounded-2xl rounded-tl-sm shadow-sm flex items-center gap-2 text-slate-500 text-sm">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>AI 正在分析多源数据...</span>
-                      </div>
-                    </div>
-                  )}
-                  <div ref={messagesEndRef} />
-                </div>
-              )}
-            </div>
-
-            {/* Research Input Area - Fixed Bottom */}
-            <div className="p-4 bg-white border-t border-slate-200">
-              <div className="max-w-4xl mx-auto relative">
-                <input
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && !isProcessing && handleResearchSend()}
-                  placeholder="了解医药市场，从这里开始..."
-                  className="w-full pl-4 pr-12 py-3.5 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all shadow-inner text-sm"
-                  disabled={isProcessing}
+        {
+          currentModule === 'research' && (
+            <div className="flex-1 flex flex-col bg-slate-50 h-full relative">
+              <div className="flex-1 relative overflow-hidden">
+                <ResearchPlanEditor
+                  initialPlan={researchPlan}
+                  onConfirm={(steps) => console.log('Confirm plan', steps)}
+                  onCancel={() => setResearchPlan(null)}
+                  isStandalone={true} // Add a prop to indicate it's the main view
                 />
-                <button
-                  onClick={() => handleResearchSend()}
-                  disabled={!input.trim() || isProcessing}
-                  className="absolute right-2 top-2 p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:bg-slate-300 transition-all shadow-sm"
+
+                {/* Overlay Input for Research - Draggable */}
+                <div
+                  className="absolute z-40 px-4"
+                  style={researchInputPos.x !== null ? {
+                    left: researchInputPos.x,
+                    top: researchInputPos.y,
+                    transform: 'none',
+                    width: '768px',
+                    maxWidth: '90%'
+                  } : {
+                    bottom: '32px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '100%',
+                    maxWidth: '768px'
+                  }}
                 >
-                  <Send className="w-4 h-4" />
-                </button>
+                  <div className="bg-white/90 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl p-2 flex gap-2 items-center">
+                    <div
+                      className="pl-2 text-slate-400 cursor-move select-none"
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        const rect = e.currentTarget.parentElement.parentElement.getBoundingClientRect();
+                        setIsResearchInputDragging(true);
+                        setResearchInputDragOffset({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                      }}
+                    >
+                      <GripVertical className="w-4 h-4 text-slate-300 hover:text-slate-500" />
+                    </div>
+                    <div className="text-slate-400">
+                      <Sparkles className="w-5 h-5 text-indigo-500" />
+                    </div>
+                    <input
+                      value={input}
+                      onChange={e => setInput(e.target.value)}
+                      onKeyDown={e => e.key === 'Enter' && !isProcessing && handleResearchSend()}
+                      placeholder="输入调研目标，自动生成工作流..."
+                      className="flex-1 bg-transparent border-none outline-none text-slate-700 placeholder-slate-400 py-2"
+                      disabled={isProcessing}
+                    />
+                    <button
+                      onClick={() => handleResearchSend()}
+                      disabled={!input.trim() || isProcessing}
+                      className="p-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 disabled:opacity-50 transition-all shadow-sm"
+                    >
+                      {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
+          )
+        }
 
-          </div>
-        )}
+        {/* MODULE: MARKET ANALYSIS */}
+        {
+          currentModule === 'market_analysis' && (
+            <div className="flex-1 h-full overflow-hidden">
+              <MarketAnalysis />
+            </div>
+          )
+        }
 
+        {/* MODULE: PPT 编辑 - 上传 PPT，左侧章节/幻灯片拖拽排序 */}
+        {
+          currentModule === 'ppt_editor' && (
+            <div className="flex-1 h-full overflow-hidden">
+              <PptSlideEditor />
+            </div>
+          )
+        }
 
+        {/* MODULE: SKILLS MANAGEMENT */}
+        {
+          currentModule === 'skills' && (
+            <div className="h-full overflow-auto">
+              <ToolTester />
+            </div>
+          )
+        }
 
-      </div>
-    </div>
+      </div >
+
+      {/* Toolbox Management Modal */}
+      {
+        showToolboxManagement && (
+          <ToolboxManagement onClose={() => setShowToolboxManagement(false)} />
+        )
+      }
+    </div >
   );
 }

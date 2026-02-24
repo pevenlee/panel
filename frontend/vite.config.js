@@ -2,7 +2,17 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-// 不强制指定端口，使用 Vite 默认端口 5173
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true
+        // 不 rewrite，保留 /api 前缀，与后端路由 /api/... 一致
+      }
+    }
+  }
 })

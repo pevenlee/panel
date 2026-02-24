@@ -1,0 +1,319 @@
+{
+  "cube_sales_data": {
+    "tool_id": "cube_sales_data",
+    "tool_name": "魔方销售数据",
+    "category": "data_extraction",
+    "description": "获取魔方系统的销售数据",
+    "icon": "",
+    "input_schema": {
+      "description": "产品名称、时间范围"
+    },
+    "output_schema": {
+      "description": "销售数据表格"
+    },
+    "config": {
+      "model": "fast",
+      "database": "IPM"
+    },
+    "data_source_type": "database",
+    "databases": [
+      "fact",
+      "ipmdata"
+    ],
+    "crawl_urls": [],
+    "preset_questions": [
+      "查询阿托伐他汀2023年全年的销售数据",
+      "对比辉瑞和阿斯利康在心血管领域的市场表现"
+    ],
+    "model": "deep",
+    "time_range_enabled": false,
+    "default_time_range": 365,
+    "output_types": [
+      "table"
+    ],
+    "system_prompt": "你是一个专业的医药数据分析师。请准确理解产品名称、时间范围等关键信息，并从魔方数据库中提取相关数据。",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": false,
+      "preset_questions": true,
+      "model": false,
+      "time_range": false,
+      "output_types": false,
+      "system_prompt": false
+    }
+  },
+  "research_sales_data": {
+    "tool_id": "research_sales_data",
+    "tool_name": "调研销售数据",
+    "category": "data_extraction",
+    "description": "获取市场调研的销售数据",
+    "icon": "",
+    "input_schema": {
+      "description": "调研项目、时间范围"
+    },
+    "output_schema": {
+      "description": "调研销售数据"
+    },
+    "config": {
+      "model": "fast"
+    },
+    "data_source_type": "web_crawl",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [
+      "获取糖尿病药物市场的最新调研数据",
+      "查询三甲医院的药品采购数据"
+    ],
+    "model": "fast",
+    "time_range_enabled": true,
+    "default_time_range": 180,
+    "output_types": [
+      "table",
+      "markdown"
+    ],
+    "system_prompt": "你是市场调研数据专家。请根据用户的调研需求，提取相关的市场调研数据，包括市场规模、竞争格局、渠道分布等信息。",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "recommended_chart": {
+    "tool_id": "recommended_chart",
+    "tool_name": "推荐图表制作",
+    "category": "chart_creation",
+    "description": "AI自动推荐最适合的图表类型",
+    "icon": "",
+    "input_schema": {
+      "description": "数据表格"
+    },
+    "output_schema": {
+      "description": "推荐的图表"
+    },
+    "config": {
+      "model": "image"
+    },
+    "data_source_type": "database",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [
+      "为销售趋势数据推荐合适的图表",
+      "展示市场份额分布"
+    ],
+    "model": "image",
+    "time_range_enabled": false,
+    "default_time_range": 365,
+    "output_types": [
+      "chart"
+    ],
+    "system_prompt": "你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    \n                                                                                                                        \n  【数据标题】{title}                                                                                                   \n  【数据统计】行数: {len(data)}, 列: {columns}                                                                          \n  【数据预览】                                                                                                          \n  {前20行数据}                                                                                                          \n                                                                                                                        \n  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          \n  你可以自由选择任何图表类型，包括但不限于：                                                                            \n  - bar (柱状图): 分类对比                                                                                              \n  - line (折线图): 时间序列、趋势                                                                                       \n  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     \n  - area (面积图): 趋势+累积                                                                                            \n  - scatter (散点图): 两个数值变量的关系                                                                                \n  - bubble (气泡图): 三个变量（x, y, size）                                                                             \n  - waterfall (瀑布图): 增减变化过程                                                                                    \n  - radar (雷达图): 多维度对比                                                                                          \n  - funnel (漏斗图): 转化率/阶段                                                                                        \n  - treemap (树图): 层级占比                                                                                            \n  - heatmap (热力图): 矩阵数据                                                                                          \n  - map (地图): 地理分布                                                                                                \n  - gauge (仪表盘): 单一指标完成度                                                                                      \n  - image (图片): 展示相关图片                                                                                          \n                                                                                                                        \n  输出 JSON 格式（同上）                                                                                                \n                                                                                                                        \n  ---                                                                                                                   \n  使用的模型: MODEL_CHART（图表推荐专用模型）",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "custom_chart": {
+    "tool_id": "custom_chart",
+    "tool_name": "自定义图表制作",
+    "category": "chart_creation",
+    "description": "自定义图表样式和数据展示",
+    "icon": "",
+    "input_schema": {
+      "description": "数据表格、图表类型"
+    },
+    "output_schema": {
+      "description": "自定义图表"
+    },
+    "config": {
+      "model": "image"
+    },
+    "data_source_type": "database",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [
+      "用柱状图展示各产品的销售额对比",
+      "制作一个双轴折线图显示销售额和增长率"
+    ],
+    "model": "image",
+    "time_range_enabled": false,
+    "default_time_range": 365,
+    "output_types": [
+      "chart"
+    ],
+    "system_prompt": "你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    \n                                                                                                                        \n  【数据标题】{title}                                                                                                   \n  【数据统计】行数: {len(data)}, 列: {columns}                                                                          \n  【数据预览】                                                                                                          \n  {前20行数据}                                                                                                          \n                                                                                                                        \n  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          \n  你可以自由选择任何图表类型，包括但不限于：                                                                            \n  - bar (柱状图): 分类对比                                                                                              \n  - line (折线图): 时间序列、趋势                                                                                       \n  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     \n  - area (面积图): 趋势+累积                                                                                            \n  - scatter (散点图): 两个数值变量的关系                                                                                \n  - bubble (气泡图): 三个变量（x, y, size）                                                                             \n  - waterfall (瀑布图): 增减变化过程                                                                                    \n  - radar (雷达图): 多维度对比                                                                                          \n  - funnel (漏斗图): 转化率/阶段                                                                                        \n  - treemap (树图): 层级占比                                                                                            \n  - heatmap (热力图): 矩阵数据                                                                                          \n  - map (地图): 地理分布                                                                                                \n  - gauge (仪表盘): 单一指标完成度                                                                                      \n  - image (图片): 展示相关图片                                                                                          \n                                                                                                                        \n  输出 JSON 格式（同上）                                                                                                \n                                                                                                                        \n  ---                                                                                                                   \n  使用的模型: MODEL_CHART（图表推荐专用模型）",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "financial_report": {
+    "tool_id": "financial_report",
+    "tool_name": "财报信息",
+    "category": "product_research",
+    "description": "获取企业财务报告和经营数据",
+    "icon": "",
+    "input_schema": {
+      "description": "企业名称、时间范围"
+    },
+    "output_schema": {
+      "description": "财报信息汇总"
+    },
+    "config": {
+      "model": "deep"
+    },
+    "data_source_type": "web_crawl",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [
+      "分析恒瑞医药2023年的财务表现",
+      "对比辉瑞和诺华的研发投入占比"
+    ],
+    "model": "deep",
+    "time_range_enabled": true,
+    "default_time_range": 570,
+    "output_types": [
+      "markdown",
+      "table"
+    ],
+    "system_prompt": "你是企业财务分析专家。请从公开的财务报告中提取关键财务指标，包括营收、利润、研发投入等，并进行专业分析。",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": false,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "public_opinion": {
+    "tool_id": "public_opinion",
+    "tool_name": "舆情信息",
+    "category": "product_research",
+    "description": "分析产品和品牌舆情动态",
+    "icon": "",
+    "input_schema": {
+      "description": "产品名称、时间范围"
+    },
+    "output_schema": {
+      "description": "舆情信息汇总"
+    },
+    "config": {
+      "model": "deep"
+    },
+    "data_source_type": "web_crawl",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [
+      "分析某新药上市后的市场反响",
+      "监测竞品的负面舆情"
+    ],
+    "model": "deep",
+    "time_range_enabled": true,
+    "default_time_range": 90,
+    "output_types": [
+      "markdown",
+      "insight"
+    ],
+    "system_prompt": "你是舆情分析专家。请从新闻、社交媒体、行业报告等渠道收集产品和品牌的舆情信息，分析正面、负面和中性评价的分布。",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "custom_tool_1770622484876": {
+    "tool_id": "custom_tool_1770622484876",
+    "tool_name": "企业调研",
+    "category": "data_extraction",
+    "description": "请编辑工具描述",
+    "icon": "",
+    "input_schema": {},
+    "output_schema": {},
+    "config": {},
+    "data_source_type": "web_crawl",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [],
+    "model": "fast",
+    "time_range_enabled": false,
+    "default_time_range": 365,
+    "output_types": [
+      "markdown"
+    ],
+    "system_prompt": "我是一个医药行业的数据分析师，做案头调研",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  },
+  "custom_tool_1770780797767": {
+    "tool_id": "custom_tool_1770780797767",
+    "tool_name": "HTML格式",
+    "category": "report_creation",
+    "description": "将前序内容输出为HTML格式的网页，直接给到一个可以点开的链接",
+    "icon": "",
+    "input_schema": {},
+    "output_schema": {},
+    "config": {},
+    "data_source_type": "database",
+    "databases": [],
+    "crawl_urls": [],
+    "preset_questions": [],
+    "model": "fast",
+    "time_range_enabled": false,
+    "default_time_range": 365,
+    "output_types": [
+      "html"
+    ],
+    "system_prompt": "",
+    "visible_fields": {
+      "tool_name": true,
+      "description": true,
+      "databases": true,
+      "crawl_urls": true,
+      "preset_questions": true,
+      "model": true,
+      "time_range": true,
+      "output_types": true,
+      "system_prompt": true
+    }
+  }
+}

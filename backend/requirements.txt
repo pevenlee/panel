@@ -4,3 +4,4 @@ pandas
 openpyxl
 python-multipart
 google-genai
+python-pptx

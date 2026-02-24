@@ -1,0 +1,3216 @@
+INFO:     Will watch for changes in these directories: ['C:\\Users\\heiyu\\Documents\\GitHub\\panel\\backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [25536] using WatchFiles
+2026-02-06 09:52:20,929 - INFO - Registered skill: research_plan_generator
+2026-02-06 09:52:20,930 - INFO - Registered skill: research_data_collector
+2026-02-06 09:52:20,931 - INFO - Registered skill: research_report_generator
+INFO:     Started server process [36792]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+正在加载数据: C:\Users\heiyu\Documents\GitHub\panel\backend\data\hcmdata.xlsx ...
+数据加载成功！
+[preset_tools] 从配置文件加载工具...
+[ResearchToolRegistry] 注册工具: 魔方销售数据库 (cube_sales_database)
+[ResearchToolRegistry] 注册工具: 调研销售数据 (research_sales_data)
+[ResearchToolRegistry] 注册工具: 推荐图表制作 (recommended_chart)
+[ResearchToolRegistry] 注册工具: 自定义图表制作 (custom_chart)
+[ResearchToolRegistry] 注册工具: 财报信息 (financial_report)
+[ResearchToolRegistry] 注册工具: 舆情信息 (public_opinion)
+[ResearchToolRegistry] 注册工具: 申报审批 (approval_info)
+[ResearchToolRegistry] 注册工具: 药品交易 (drug_trading)
+[ResearchToolRegistry] 注册工具: 顺序拼接 (sequential_assembly)
+[ResearchToolRegistry] 注册工具: 内容总结 (content_summary)
+[ResearchToolRegistry] 注册工具: 制作图片 (custom_tool_1770219005405)
+[preset_tools] 已从配置文件加载 11 个工具
+Preloading data...
+Data preload skipped (disabled temporarily).
+INFO:     127.0.0.1:50744 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63400 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63400 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63400 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63400 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63400 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+2026-02-06 09:53:58,909 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 09:53:58,912 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 09:53:58,913 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC965A0>
+2026-02-06 09:53:58,913 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 09:53:58,914 - DEBUG - send_request_headers.complete
+2026-02-06 09:53:58,914 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 09:53:58,914 - DEBUG - send_request_body.complete
+2026-02-06 09:53:58,914 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 09:53:58,914 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 09:53:58,914 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 09:53:59,671 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC96720>
+2026-02-06 09:53:59,671 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 09:53:59,671 - DEBUG - send_request_headers.complete
+2026-02-06 09:53:59,672 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 09:53:59,672 - DEBUG - send_request_body.complete
+2026-02-06 09:53:59,673 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 09:54:31,937 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 01:54:31 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=32063'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 09:54:31,938 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 09:54:31,938 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 09:54:31,943 - DEBUG - receive_response_body.complete
+2026-02-06 09:54:31,944 - DEBUG - response_closed.started
+2026-02-06 09:54:31,944 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[load_data] Fact 表数值列已转换: 销售额, 销售量
+[load_data] 成功加载 fact.csv: 1186276 行 x 5 列
+[load_data] 成功加载 ipmdata.xlsx: 197798 行 x 26 列
+[gemini_engine] 元数据已构建。主表 145665 行。附表 keys: ['hcm', 'fact', 'ipm']
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[gemini_engine] Gemini 客户端初始化成功。
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 时间范围筛选：使用环境变量 mat_list (最近365天)
+df_fact_filtered = df_fact[df_fact['年季'].isin(mat_list)].copy()
+
+# 2. 关联药品属性表 (IPM) 以获取企业信息
+# 仅提取必要字段减少内存消耗
+df_ipm_subset = df_ipm[['药品索引', '生产企业', '集团名称']]
+df_merged = pd.merge(df_fact_filtered, df_ipm_subset, on='药品索引', how='inner')
+
+# 3. 筛选企业：恒瑞
+# 匹配逻辑：生产企业 或 集团名称 中包含 '恒瑞'
+mask_hengrui = (
+    df_merged['生产企业'].str.contains('恒瑞', na=False) | 
+    df_merged['集团名称'].str.contains('恒瑞', na=False)
+)
+df_target = df_merged[mask_hengrui]
+
+# 4. 筛选渠道：核心医院渠道(医院) 和 实体零售渠道(零售)
+# df_fact 中渠道仅有 '医院' 和 '零售'，此处显式筛选以确保逻辑准确
+df_target = df_target[df_target['渠道'].isin(['医院', '零售'])]
+
+# 5. 分组汇总
+# 按渠道和年季展示趋势
+result_df = df_target.groupby(['渠道', '年季'])['销售额'].sum().reset_index()
+
+# 6. 数据格式化
+result_df['销售额'] = result_df['销售额'].astype('int64')
+result_df = result_df.sort_values(by=['渠道', '年季'])
+
+# 7. 输出结果
+results = {'恒瑞分渠道销售趋势': result_df}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'df_fact_filtered', 'df_ipm_subset', 'df_merged', 'mask_hengrui', 'df_target', 'result_df']
+[query_executor] results 类型: <class 'dict'>, 内容: {'恒瑞分渠道销售趋势':    渠道    年季         销售额
+0  医院  24Q4  5079546903
+1  医院  25Q1  5103994614
+2  医院  25Q2  5240231577
+3  医院  25Q3  5771642784
+4  零售  24Q4  1282968428
+5  零售  25Q1  1251088715
+6  零售  25Q2  1269836024
+7  零售  25Q3  1345733766}
+[query_executor] 提取到结果: ['恒瑞分渠道销售趋势']
+[query_executor] 结果 DataFrame shape: (8, 3)
+[query_executor] 结果 DataFrame columns: ['渠道', '年季', '销售额']
+[_df_to_chart_data] DataFrame shape: (8, 3), 列名: ['渠道', '年季', '销售额']
+[_df_to_full_records] DataFrame shape: (8, 3)
+[query_executor] chart_data 长度: 8
+[query_executor] full_data 长度: 8
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 8
+[cube_sales_internal] 查询成功，返回 8 条记录
+INFO:     127.0.0.1:64661 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54898 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61976 - "OPTIONS /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 推荐图表制作
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:61976 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63974 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "OPTIONS /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 推荐图表制作
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:50553 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 推荐图表制作
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:50553 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50553 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63485 - "GET /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+2026-02-06 10:17:09,041 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:17:09,043 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 10:17:09,044 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC960C0>
+2026-02-06 10:17:09,044 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:17:09,045 - DEBUG - send_request_headers.complete
+2026-02-06 10:17:09,045 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 10:17:09,045 - DEBUG - send_request_body.complete
+2026-02-06 10:17:09,045 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:17:09,045 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 10:17:09,046 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 10:17:09,757 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC96B70>
+2026-02-06 10:17:09,758 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:17:09,758 - DEBUG - send_request_headers.complete
+2026-02-06 10:17:09,758 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:17:09,759 - DEBUG - send_request_body.complete
+2026-02-06 10:17:09,759 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:17:51,634 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:17:51 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=41691'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:17:51,637 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:17:51,638 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:17:51,655 - DEBUG - receive_response_body.complete
+2026-02-06 10:17:51,656 - DEBUG - response_closed.started
+2026-02-06 10:17:51,656 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 数据关联
+# df_fact 为销售事实表，df_ipm 为产品属性表，通过'药品索引'关联
+df_merged = pd.merge(df_fact, df_ipm, on='药品索引', how='inner')
+
+# 2. 筛选'恒瑞'相关产品
+# 在集团名称或生产企业中模糊匹配'恒瑞'
+mask_corp = df_merged['集团名称'].str.contains('恒瑞', na=False) | df_merged['生产企业'].str.contains('恒瑞', na=False)
+df_target = df_merged[mask_corp]
+
+# 3. 筛选渠道
+# 核心医院渠道 -> 医院, 实体零售渠道 -> 零售
+df_target = df_target[df_target['渠道'].isin(['医院', '零售'])]
+
+# 4. 时间格式对齐与筛选
+# 将注入的 mat_list (如 '24Q4') 转换为数据中的格式 (如 '24Q4') 以便筛选最近365天，同时也保留历史数据查看趋势
+# 这里展示所有可用数据的趋势，以满足'连续几年'的查看需求
+
+# 5. 分组汇总
+# 按年季和渠道汇总销售额
+df_trend = df_target.groupby(['年季', '渠道'])['销售额'].sum().reset_index()
+
+# 6. 数据透视
+# 将渠道转为列，便于对比
+df_pivot = df_trend.pivot(index='年季', columns='渠道', values='销售额').fillna(0)
+
+# 7. 格式化结果
+# 销售额取整
+result_df = df_pivot.astype('int64').reset_index()
+result_df.columns.name = None # 去除列索引名称
+
+# 8. 输出结果
+results = {'恒瑞_分渠道销售趋势': result_df}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'df_merged', 'mask_corp', 'df_target', 'df_trend', 'df_pivot', 'result_df']
+[query_executor] results 类型: <class 'dict'>, 内容: {'恒瑞_分渠道销售趋势':       年季          医院          零售
+0   21Q1  5304216902   747039486
+1   21Q2  6327297621   788090626
+2   21Q3  6539821289   858973452
+3   21Q4  5069082493   812543136
+4   22Q1  4725204090   637593946
+5   22Q2  4655224673   711734078
+6   22Q3  5222976884   714153481
+7   22Q4  4218901224   735524927
+8   23Q1  4670612872   681999902
+9   23Q2  5159209269  1036848261
+10  23Q3  5288998980   909877400
+11  23Q4  4495463253   906030531
+12  24Q1  4881657076   936529511
+13  24Q2  5270458232  1170073101
+14  24Q3  5779774344  1286302358
+15  24Q4  5079546903  1282968428
+16  25Q1  5103994614  1251088715
+17  25Q2  5240231577  1269836024
+18  25Q3  5771642784  1345733766}
+[query_executor] 提取到结果: ['恒瑞_分渠道销售趋势']
+[query_executor] 结果 DataFrame shape: (19, 3)
+[query_executor] 结果 DataFrame columns: ['年季', '医院', '零售']
+[_df_to_chart_data] DataFrame shape: (19, 3), 列名: ['年季', '医院', '零售']
+[_df_to_full_records] DataFrame shape: (19, 3)
+[query_executor] chart_data 长度: 19
+[query_executor] full_data 长度: 19
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 19
+[cube_sales_internal] 查询成功，返回 19 条记录
+INFO:     127.0.0.1:63969 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:17:53,525 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:17:53,526 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:17:53,527 - DEBUG - send_request_headers.complete
+2026-02-06 10:17:53,528 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:17:53,528 - DEBUG - send_request_body.complete
+2026-02-06 10:17:53,528 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:18:55,484 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:18:55 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=61755'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:18:55,484 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:18:55,486 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:18:55,658 - DEBUG - receive_response_body.complete
+2026-02-06 10:18:55,658 - DEBUG - response_closed.started
+2026-02-06 10:18:55,658 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 自定义图表制作
+[workflow] tool_id=custom_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[workflow] 接收到 1 个上游节点的输入数据
+[workflow] 检测到图表制作工具，处理输入数据...
+[workflow] 图表制作接收到数据: 19 条记录
+[chart_creation] 开始执行: tool_id=custom_chart, rationale=【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[chart_creation] 调用数据看板的统一图表生成逻辑...
+[chart_creation] 接收到 19 条数据记录
+[query_executor] 开始图表生成: title=【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[chart_creation] 图表生成成功: line
+[chart_creation] 返回 19 条数据记录
+INFO:     127.0.0.1:63969 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56325 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56325 - "GET /api/toolbox/tool/research_sales_data HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56325 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56325 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54819 - "GET /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54819 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51887 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51887 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51887 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53437 - "GET /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53437 - "OPTIONS /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+[ResearchToolRegistry] 更新工具: 自定义图表制作 (custom_chart)
+[ResearchToolRegistry] 配置已保存到 C:\Users\heiyu\Documents\GitHub\panel\backend\app\data\tools_config.json
+INFO:     127.0.0.1:53437 - "PUT /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53437 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53437 - "OPTIONS /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+[ResearchToolRegistry] 更新工具: 推荐图表制作 (recommended_chart)
+[ResearchToolRegistry] 配置已保存到 C:\Users\heiyu\Documents\GitHub\panel\backend\app\data\tools_config.json
+INFO:     127.0.0.1:53437 - "PUT /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53437 - "GET /api/research/tools HTTP/1.1" 200 OK
+2026-02-06 10:24:13,384 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:24:13,387 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 10:24:13,387 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB5AC0>
+2026-02-06 10:24:13,387 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:24:13,388 - DEBUG - send_request_headers.complete
+2026-02-06 10:24:13,388 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 10:24:13,388 - DEBUG - send_request_body.complete
+2026-02-06 10:24:13,388 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:24:13,388 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 10:24:13,389 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 10:24:14,178 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB5B20>
+2026-02-06 10:24:14,178 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:24:14,178 - DEBUG - send_request_headers.complete
+2026-02-06 10:24:14,178 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:24:14,178 - DEBUG - send_request_body.complete
+2026-02-06 10:24:14,179 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:24:45,048 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:24:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=30572'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:24:45,049 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:24:45,049 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:24:45,062 - DEBUG - receive_response_body.complete
+2026-02-06 10:24:45,062 - DEBUG - response_closed.started
+2026-02-06 10:24:45,063 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 企业连续几年的销售情况
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 筛选 Fact 表：时间和渠道
+# mat_list 为环境变量，代表最近365天 (如 ['24Q4', '25Q1', '25Q2', '25Q3'])
+df_sales = df_fact[
+    (df_fact['年季'].isin(mat_list)) & 
+    (df_fact['渠道'].isin(['医院', '零售']))
+]
+
+# 2. 筛选 IPM 表：生产企业为恒瑞
+# 使用 na=False 处理可能存在的空值
+mask_pharma = df_ipm['生产企业'].str.contains('恒瑞', na=False)
+df_products = df_ipm.loc[mask_pharma, ['药品索引', '生产企业']]
+
+# 3. 关联两表
+df_merged = pd.merge(df_sales, df_products, on='药品索引', how='inner')
+
+# 4. 分组汇总
+# 按渠道统计销售额
+result = df_merged.groupby('渠道')['销售额'].sum().reset_index()
+
+# 5. 格式化数据
+# 销售额取整
+result['销售额'] = result['销售额'].astype('int64')
+
+# 按销售额降序排列
+result = result.sort_values(by='销售额', ascending=False).reset_index(drop=True)
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'df_sales', 'mask_pharma', 'df_products', 'df_merged', 'result']
+[query_executor] results 类型: <class 'dict'>, 内容: {}
+[query_executor] results 为空，尝试查找备选变量...
+[query_executor] 找到 result 变量
+[query_executor] 提取到结果: ['查询结果']
+[query_executor] 结果 DataFrame shape: (2, 2)
+[query_executor] 结果 DataFrame columns: ['渠道', '销售额']
+[_df_to_chart_data] DataFrame shape: (2, 2), 列名: ['渠道', '销售额']
+[_df_to_full_records] DataFrame shape: (2, 2)
+[query_executor] chart_data 长度: 2
+[query_executor] full_data 长度: 2
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 2
+[cube_sales_internal] 查询成功，返回 2 条记录
+INFO:     127.0.0.1:53437 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:24:45,319 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:24:45,321 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:24:45,321 - DEBUG - send_request_headers.complete
+2026-02-06 10:24:45,322 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:24:45,322 - DEBUG - send_request_body.complete
+2026-02-06 10:24:45,322 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:25:02,151 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:25:01 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=16645'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:25:02,151 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:25:02,152 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:25:02,294 - DEBUG - receive_response_body.complete
+2026-02-06 10:25:02,294 - DEBUG - response_closed.started
+2026-02-06 10:25:02,294 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 自定义图表制作
+[workflow] tool_id=custom_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[workflow] 接收到 1 个上游节点的输入数据
+[workflow] 检测到图表制作工具，处理输入数据...
+[workflow] 图表制作接收到数据: 2 条记录
+[chart_creation] 开始执行: tool_id=custom_chart, rationale=【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[chart_creation] 调用数据看板的统一图表生成逻辑...
+[chart_creation] 接收到 2 条数据记录
+[query_executor] 开始图表生成: title=【系统指令】你是图表定制专家。根据用户指定的图表类型和样式要求，创建符合需求的可视化图表。支持自定义颜色、标签、图例等元素。
+关于 "Unit Handling":
+原文意图：不要让 AI 直接输出 "1.5万"，而是输出 "15000"，把格式化留给前端代码。
+提示词建议：“请输出原始数字（如 10000），不要输出带单位的字符串（如 1万），前端会自动处理单位换算。”
+关于 "Dual Axis":
+原文意图：前端代码通过检测列名中是否含有 "Rate" 或 "%" 来决定是否使用右侧 Y 轴（通常用于显示百分比）。
+提示词建议：“凡是百分比数据，字段名必须包含 'Rate' 或 '(%)'，例如 'Conversion_Rate'。”
+关于 "Dimension/Legend":
+原文意图：区分 X 轴（维度）和颜色分组（图例）。
+提示词建议：“请明确区分维度字段与数值字段，以便正确生成图例。”
+工具: 自定义图表制作
+时间范围: 最近365天
+[chart_creation] 图表生成成功: pie
+[chart_creation] 返回 2 条数据记录
+INFO:     127.0.0.1:53437 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60622 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60622 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60622 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60622 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64583 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51987 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56951 - "OPTIONS /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:47:07,868 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:47:07,871 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 10:47:07,872 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE01A0>
+2026-02-06 10:47:07,872 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:47:07,873 - DEBUG - send_request_headers.complete
+2026-02-06 10:47:07,873 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 10:47:07,873 - DEBUG - send_request_body.complete
+2026-02-06 10:47:07,874 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:47:07,874 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 10:47:07,874 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 10:47:08,928 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE01D0>
+2026-02-06 10:47:08,929 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:47:08,929 - DEBUG - send_request_headers.complete
+2026-02-06 10:47:08,930 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:47:08,931 - DEBUG - send_request_body.complete
+2026-02-06 10:47:08,931 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:47:53,982 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:47:53 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=44858'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:47:53,983 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:47:53,984 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:47:54,124 - DEBUG - receive_response_body.complete
+2026-02-06 10:47:54,124 - DEBUG - response_closed.started
+2026-02-06 10:47:54,124 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 筛选药品表 (df_ipm) - 匹配恒瑞
+# 查找集团名称或生产企业中包含'恒瑞'的记录
+mask_hengrui = df_ipm['集团名称'].str.contains('恒瑞', na=False) | df_ipm['生产企业'].str.contains('恒瑞', na=False)
+df_ipm_filtered = df_ipm[mask_hengrui][['药品索引', 'ATC2Des']]
+
+# 2. 筛选事实表 (df_fact) - 时间与渠道
+# 时间: 使用环境变量 mat_list (最近365天)
+# 渠道: 核心医院 -> '医院', 实体零售 -> '零售'
+target_channels = ['医院', '零售']
+mask_fact = df_fact['年季'].isin(mat_list) & df_fact['渠道'].isin(target_channels)
+df_fact_filtered = df_fact[mask_fact]
+
+# 3. 关联表
+df_merged = pd.merge(df_fact_filtered, df_ipm_filtered, on='药品索引', how='inner')
+
+# 4. 分组聚合 - 按ATC2分类和季度汇总销售额
+df_trend = df_merged.groupby(['ATC2Des', '年季'])['销售额'].sum().reset_index()
+
+# 5. 透视表 - 行: ATC分类, 列: 季度
+df_pivot = df_trend.pivot(index='ATC2Des', columns='年季', values='销售额').fillna(0)
+
+# 6. 排序 - 按总销售额降序排列
+df_pivot['Total'] = df_pivot.sum(axis=1)
+df_pivot = df_pivot.sort_values('Total', ascending=False).drop(columns='Total')
+
+# 7. 格式整理
+# 销售额取整
+df_pivot = df_pivot.astype('int64')
+# 重命名索引和去除列名层级
+df_pivot.index.name = 'ATC二级分类'
+df_pivot.columns.name = None
+
+results = {'恒瑞各ATC分类销售趋势': df_pivot}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'mask_hengrui', 'df_ipm_filtered', 'target_channels', 'mask_fact', 'df_fact_filtered', 'df_merged', 'df_trend', 'df_pivot']
+[query_executor] results 类型: <class 'dict'>, 内容: {'恒瑞各ATC分类销售趋势':                              24Q4        25Q1        25Q2        25Q3
+ATC二级分类                                                              
+XL01-抗肿瘤药              2025915926  2001452341  2103635611  2361554957
+XV08-造影剂                924900185   979753698   961698535   951878603
+XN01-麻醉剂                499341331   501385180   507145876   536522035
+XL02-内分泌治疗用药            389414295   432935317   460559178   555956510
+XN02-镇痛药                466864376   436749017   371010542   380658898
+XB02-抗出血药               392896575   396967200   394263516   420500763
+XL03-免疫兴奋剂              373190496   353084065   390513329   451941110
+XA10-糖尿病用药              157182437   167865837   221355316   291147164
+XC09-作用于肾素-血管紧张素系统的药物   195398543   192810508   188980414   189468698
+XM01-抗炎和抗风湿药            169115573   161306313   178860191   176131495
+XN05-精神安定药              113720054   110999123   126541837   158968477
+XB05-血液代用品和灌注液          120068906   107724664    99053515   103043566
+XJ02-全身用抗真菌药             85664408    99301711   101642545   111054695
+XA03-治疗功能性胃肠道疾病的药物       69358085    61836821    63660675    56598843
+XM04-抗痛风药                62796228    51327809    50404177    57650210
+XM03-肌肉松弛药               53570375    49629382    43213537    45472108
+XA04-止吐药和止恶心药            44923203    41086036    41974583    48007747
+XL04-免疫抑制剂               31306638    36208125    37312149    52711441
+XV03-其他治疗药物              31451523    29247045    29776870    34376897
+XJ01-全身用抗菌药              36867177    30225694    26400709    23030943
+XG04-泌尿系统药               27620717    24954012    22856662    18997691
+XC10-调节血脂药               17314389    16431711    18752875    19867536
+XC03-利尿剂                  9879011    13493160    14463717    14050416
+XH05-钙稳态药                 9750194     9410271    13829306    15467603
+XB01-抗血栓形成药              11800053    10897442     9548025     9807501
+XN03-抗癫痫药                 7654828     8037494     8277254     8633540
+XR05-咳嗽和感冒制剂             11217462     9427957     4792208     3975894
+XR06-全身用抗组胺药              5731194     4594549     5661130     5980475
+XS01-眼科用药                 3529421     3640656     3542940     4693289
+XM05-治疗骨病的药物              4506292     3278734     2650205     2147138
+XC01-心脏治疗药                2169291     2011359     2106261     2246307
+XA07-止泻药、肠道消炎药、肠道抗感染药      980965     1156087     1228482     1538171
+XC08-钙通道阻滞剂               1400249     1150540     1112662     1085165
+XD01-皮肤用抗真菌药              1238711     1301389     1223454      944875
+XN04-抗帕金森氏病药              1365728     1118303      700452      365351
+XG03-生殖系统的性激素和调节剂         1216071     1211667      584804      129553
+XN06-精神兴奋药                 882343      798012      519089      450029
+XR01-鼻部制剂                  285218      274100      214970      320856
+XA05-胆和肝治疗药                 26860           0           0           0}
+[query_executor] 提取到结果: ['恒瑞各ATC分类销售趋势']
+[query_executor] 结果 DataFrame shape: (39, 4)
+[query_executor] 结果 DataFrame columns: ['24Q4', '25Q1', '25Q2', '25Q3']
+[_df_to_chart_data] DataFrame shape: (39, 4), 列名: ['24Q4', '25Q1', '25Q2', '25Q3']
+[_df_to_full_records] DataFrame shape: (39, 4)
+[query_executor] chart_data 长度: 39
+[query_executor] full_data 长度: 39
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 39
+[cube_sales_internal] 查询成功，返回 39 条记录
+INFO:     127.0.0.1:56951 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:47:54,526 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:47:54,528 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:47:54,528 - DEBUG - send_request_headers.complete
+2026-02-06 10:47:54,528 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:47:54,528 - DEBUG - send_request_body.complete
+2026-02-06 10:47:54,528 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:48:15,286 - DEBUG - receive_response_headers.failed exception=RemoteProtocolError('Server disconnected without sending a response.')
+2026-02-06 10:48:15,286 - DEBUG - response_closed.started
+2026-02-06 10:48:15,286 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 接收到 1 个上游节点的输入数据
+[workflow] 检测到图表制作工具，处理输入数据...
+[workflow] 图表制作接收到数据: 39 条记录
+[chart_creation] 开始执行: tool_id=recommended_chart, rationale=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[chart_creation] 调用数据看板的统一图表生成逻辑...
+[chart_creation] 接收到 39 条数据记录
+[query_executor] 开始图表生成: title=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+INFO:     127.0.0.1:56951 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app\gemini_engine.py'. Reloading...
+2026-02-06 10:50:10,085 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:50:10,086 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 10:50:10,087 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC976E0>
+2026-02-06 10:50:10,087 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:50:10,087 - DEBUG - send_request_headers.complete
+2026-02-06 10:50:10,088 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 10:50:10,088 - DEBUG - send_request_body.complete
+2026-02-06 10:50:10,088 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:50:10,088 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 10:50:10,088 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 10:50:10,783 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBC943E0>
+2026-02-06 10:50:10,783 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:50:10,784 - DEBUG - send_request_headers.complete
+2026-02-06 10:50:10,784 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:50:10,785 - DEBUG - send_request_body.complete
+2026-02-06 10:50:10,785 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:51:13,221 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:51:12 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=62223'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:51:13,222 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:51:13,223 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:51:13,446 - DEBUG - receive_response_body.complete
+2026-02-06 10:51:13,446 - DEBUG - response_closed.started
+2026-02-06 10:51:13,446 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 关联事实表与IPM表以获取ATC和企业信息
+df_merged = pd.merge(df_fact, df_ipm[['药品索引', 'ATC1Des', '生产企业']], on='药品索引', how='left')
+
+# 筛选：恒瑞医药 + 指定渠道 (医院, 零售)
+# 渠道仅包含 '医院' 和 '零售'，直接筛选即可
+cond_ent = df_merged['生产企业'].str.contains('恒瑞', na=False)
+cond_channel = df_merged['渠道'].isin(['医院', '零售'])
+df_filtered = df_merged[cond_ent & cond_channel].copy()
+
+# 定义聚合逻辑
+# 1. MAT 销售额 (最近365天)
+mat_sales = df_filtered[df_filtered['年季'].isin(mat_list)].groupby('ATC1Des')['销售额'].sum()
+
+# 2. YTD 销售额 (用于计算增长率)
+ytd_sales = df_filtered[df_filtered['年季'].isin(ytd_list)].groupby('ATC1Des')['销售额'].sum()
+ytd_prior_sales = df_filtered[df_filtered['年季'].isin(ytd_list_prior)].groupby('ATC1Des')['销售额'].sum()
+
+# 构建结果 DataFrame
+result = pd.DataFrame({
+    'MAT销售额': mat_sales,
+    'YTD销售额': ytd_sales,
+    '去年同期YTD': ytd_prior_sales
+})
+
+# 填充空值为0 (防止计算错误)
+result = result.fillna(0)
+
+# 计算指标
+# 份额：各ATC在恒瑞总盘子中的占比
+total_mat_sales = result['MAT销售额'].sum()
+result['MAT份额(%)'] = (result['MAT销售额'] / total_mat_sales) * 100
+
+# 趋势：YTD同比增长率
+# 避免除以0
+result['YTD增长率(%)'] = result.apply(lambda x: (x['YTD销售额'] - x['去年同期YTD']) / x['去年同期YTD'] * 100 if x['去年同期YTD'] != 0 else 0, axis=1)
+
+# 格式化与排序
+result['MAT销售额'] = result['MAT销售额'].astype('int64')
+result['MAT份额(%)'] = result['MAT份额(%)'].round(1)
+result['YTD增长率(%)'] = result['YTD增长率(%)'].round(1)
+
+# 选取最终列并排序
+result = result[['MAT销售额', 'MAT份额(%)', 'YTD增长率(%)']].sort_values('MAT销售额', ascending=False)
+
+# 重命名索引
+result.index.name = 'ATC分类'
+
+# 结果赋值
+result = result
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'df_merged', 'cond_ent', 'cond_channel', 'df_filtered', 'mat_sales', 'ytd_sales', 'ytd_prior_sales', 'result', 'total_mat_sales']
+[query_executor] results 类型: <class 'dict'>, 内容: {}
+[query_executor] results 为空，尝试查找备选变量...
+[query_executor] 找到 result 变量
+[query_executor] 提取到结果: ['查询结果']
+[query_executor] 结果 DataFrame shape: (13, 3)
+[query_executor] 结果 DataFrame columns: ['MAT销售额', 'MAT份额(%)', 'YTD增长率(%)']
+[_df_to_chart_data] DataFrame shape: (13, 3), 列名: ['MAT销售额', 'MAT份额(%)', 'YTD增长率(%)']
+[_df_to_full_records] DataFrame shape: (13, 3)
+[query_executor] chart_data 长度: 13
+[query_executor] full_data 长度: 13
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 13
+[cube_sales_internal] 查询成功，返回 13 条记录
+INFO:     127.0.0.1:58814 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:51:14,293 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:51:14,297 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:51:14,297 - DEBUG - send_request_headers.complete
+2026-02-06 10:51:14,298 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:51:14,298 - DEBUG - send_request_body.complete
+2026-02-06 10:51:14,298 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 10:51:40,768 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 02:51:40 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=26280'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 10:51:40,768 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 10:51:40,768 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 10:51:40,796 - DEBUG - receive_response_body.complete
+2026-02-06 10:51:40,796 - DEBUG - response_closed.started
+2026-02-06 10:51:40,796 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 接收到 1 个上游节点的输入数据
+[workflow] 检测到图表制作工具，处理输入数据...
+[workflow] 图表制作接收到数据: 13 条记录
+[chart_creation] 开始执行: tool_id=recommended_chart, rationale=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[chart_creation] 调用数据看板的统一图表生成逻辑...
+[chart_creation] 接收到 13 条数据记录
+[query_executor] 开始图表生成: title=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[chart_creation] 图表生成成功: bubble
+[chart_creation] 返回 13 条数据记录
+INFO:     127.0.0.1:58814 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55291 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/research_sales_data HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/custom_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/research_sales_data HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61557 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54973 - "OPTIONS /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+[ResearchToolRegistry] 更新工具: 魔方销售数据库 (cube_sales_database)
+[ResearchToolRegistry] 配置已保存到 C:\Users\heiyu\Documents\GitHub\panel\backend\app\data\tools_config.json
+INFO:     127.0.0.1:54973 - "PUT /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54973 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54973 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50541 - "OPTIONS /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 10:59:39,227 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 10:59:39,228 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 10:59:39,229 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB7530>
+2026-02-06 10:59:39,230 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:59:39,230 - DEBUG - send_request_headers.complete
+2026-02-06 10:59:39,230 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 10:59:39,230 - DEBUG - send_request_body.complete
+2026-02-06 10:59:39,230 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 10:59:39,230 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 10:59:39,230 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 10:59:39,966 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB7CB0>
+2026-02-06 10:59:39,967 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 10:59:39,967 - DEBUG - send_request_headers.complete
+2026-02-06 10:59:39,967 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 10:59:39,968 - DEBUG - send_request_body.complete
+2026-02-06 10:59:39,969 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:00:09,746 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:00:09 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=29570'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:00:09,747 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:00:09,748 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:00:09,750 - DEBUG - receive_response_body.complete
+2026-02-06 11:00:09,750 - DEBUG - response_closed.started
+2026-02-06 11:00:09,750 - DEBUG - response_closed.complete
+Traceback (most recent call last):
+  File "C:\Users\heiyu\Documents\GitHub\panel\backend\app\query_executor.py", line 258, in _execute_pandas_code
+    exec(code, exec_ctx)
+  File "<string>", line 25, in <module>
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 6534, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\internals\managers.py", line 414, in astype
+    return self.apply(
+           ^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\internals\managers.py", line 354, in apply
+    applied = getattr(b, f)(**kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\internals\blocks.py", line 616, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\dtypes\astype.py", line 238, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\dtypes\astype.py", line 183, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\dtypes\astype.py", line 134, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '21Q1'
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 关联事实表和属性表
+df_merge = pd.merge(df_fact, df_ipm[['药品索引', '生产企业', 'ATC1Des']], on='药品索引', how='inner')
+
+# 筛选渠道 (医院 + 零售)
+df_merge = df_merge[df_merge['渠道'].isin(['医院', '零售'])]
+
+# 筛选企业 (恒瑞)
+df_merge = df_merge[df_merge['生产企业'].str.contains('恒瑞', na=False)]
+
+# 按维度汇总销售额
+df_group = df_merge.groupby(['年季', '生产企业', 'ATC1Des'])['销售额'].sum().reset_index()
+
+# 排序以进行环比计算
+df_group.sort_values(by=['生产企业', 'ATC1Des', '年季'], inplace=True)
+
+# 计算环比: (本季 - 上季) / 上季
+# 对每个企业和ATC分类内部进行shift
+df_group['上季销售额'] = df_group.groupby(['生产企业', 'ATC1Des'])['销售额'].shift(1)
+df_group['环比(%)'] = (df_group['销售额'] - df_group['上季销售额']) / df_group['上季销售额'] * 100
+
+# 计算同比: (本季 - 去年同季) / 去年同季
+# 构造辅助列用于匹配
+df_group['Year'] = df_group['年季'].str[:4].astype(int)
+df_group['Quarter'] = df_group['年季'].str[-2:]
+df_group['Prev_Year_Key'] = (df_group['Year'] - 1).astype(str) + df_group['Quarter']
+
+# 自关联获取去年同期数据
+df_prev = df_group[['年季', '生产企业', 'ATC1Des', '销售额']].rename(columns={'年季': 'Prev_Year_Key', '销售额': '去年同期销售额'})
+df_final = pd.merge(df_group, df_prev, on=['Prev_Year_Key', '生产企业', 'ATC1Des'], how='left')
+
+df_final['同比(%)'] = (df_final['销售额'] - df_final['去年同期销售额']) / df_final['去年同期销售额'] * 100
+
+# 格式化数据
+df_final['销售额'] = df_final['销售额'].fillna(0).astype('int64')
+df_final['同比(%)'] = df_final['同比(%)'].round(1)
+df_final['环比(%)'] = df_final['环比(%)'].round(1)
+
+# 重命名并提取最终列
+df_final.rename(columns={'ATC1Des': 'ATC1'}, inplace=True)
+result = df_final[['生产企业', 'ATC1', '销售额', '同比(%)', '环比(%)', '年季']]
+
+# 最终结果赋值
+results = {'恒瑞销售趋势': result}
+[query_executor] 代码执行错误: invalid literal for int() with base 10: '21Q1'
+INFO:     127.0.0.1:50541 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:50541 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 11:00:26,830 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 11:00:26,832 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 11:00:26,834 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE17C0>
+2026-02-06 11:00:26,834 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:00:26,834 - DEBUG - send_request_headers.complete
+2026-02-06 11:00:26,834 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 11:00:26,835 - DEBUG - send_request_body.complete
+2026-02-06 11:00:26,835 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:00:26,835 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 11:00:26,835 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 11:00:27,613 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE15B0>
+2026-02-06 11:00:27,613 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 11:00:27,613 - DEBUG - send_request_headers.complete
+2026-02-06 11:00:27,613 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 11:00:27,613 - DEBUG - send_request_body.complete
+2026-02-06 11:00:27,613 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:01:47,907 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:01:47 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=80077'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:01:47,907 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:01:47,907 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:01:48,072 - DEBUG - receive_response_body.complete
+2026-02-06 11:01:48,072 - DEBUG - response_closed.started
+2026-02-06 11:01:48,073 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+预置问题: 各ATC分类的销售趋势变化
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 筛选恒瑞相关药品
+# 匹配生产企业或集团名称中包含'恒瑞'的记录
+mask_hengrui = (df_ipm['生产企业'].str.contains('恒瑞', na=False)) | \
+               (df_ipm['集团名称'].str.contains('恒瑞', na=False))
+# 提取药品索引及相关维度，并去重防止多对多关联膨胀
+df_target_drugs = df_ipm.loc[mask_hengrui, ['药品索引', '生产企业', 'ATC1Des']].drop_duplicates(subset=['药品索引'])
+
+# 2. 关联销售数据
+df_merged = pd.merge(df_fact, df_target_drugs, on='药品索引', how='inner')
+
+# 3. 筛选时间范围 2022~2025Q3
+# 构建目标季度列表
+target_quarters = []
+for y in range(2022, 2026):
+    for q in range(1, 5):
+        q_str = f"{y}Q{q}"
+        if q_str <= '25Q3':
+            target_quarters.append(q_str)
+
+df_merged = df_merged[df_merged['年季'].isin(target_quarters)]
+
+# 4. 聚合计算
+# 按 年季、生产企业、ATC1Des 汇总销售额
+df_agg = df_merged.groupby(['年季', '生产企业', 'ATC1Des'])['销售额'].sum().reset_index()
+
+# 5. 计算同比和环比
+# 辅助函数：获取上期(QoQ)和同期(YoY)的时间标签
+def get_prev_q(yq):
+    try:
+        y, q = int(yq[:4]), int(yq[-1])
+        if q == 1: return f"{y-1}Q4"
+        else: return f"{y}Q{q-1}"
+    except: return None
+
+def get_prev_y_q(yq):
+    try:
+        y, q = int(yq[:4]), int(yq[-1])
+        return f"{y-1}Q{q}"
+    except: return None
+
+df_agg['prev_q'] = df_agg['年季'].apply(get_prev_q)
+df_agg['prev_y_q'] = df_agg['年季'].apply(get_prev_y_q)
+
+# 自关联获取环比基数
+df_qoq_base = df_agg[['年季', '生产企业', 'ATC1Des', '销售额']].rename(columns={'年季': 'prev_q', '销售额': 'sales_prev_q'})
+df_calc = pd.merge(df_agg, df_qoq_base, on=['prev_q', '生产企业', 'ATC1Des'], how='left')
+
+# 自关联获取同比基数
+df_yoy_base = df_agg[['年季', '生产企业', 'ATC1Des', '销售额']].rename(columns={'年季': 'prev_y_q', '销售额': 'sales_prev_y'})
+df_calc = pd.merge(df_calc, df_yoy_base, on=['prev_y_q', '生产企业', 'ATC1Des'], how='left')
+
+# 计算增长率 (%)
+df_calc['环比'] = (df_calc['销售额'] - df_calc['sales_prev_q']) / df_calc['sales_prev_q'] * 100
+df_calc['同比'] = (df_calc['销售额'] - df_calc['sales_prev_y']) / df_calc['sales_prev_y'] * 100
+
+# 6. 格式化输出
+df_result = df_calc.rename(columns={'生产企业': '企业', 'ATC1Des': 'ATC1'})
+
+# 筛选字段
+final_cols = ['企业', 'ATC1', '销售额', '同比', '环比', '年季']
+df_result = df_result[final_cols]
+
+# 类型转换与精度处理
+df_result['销售额'] = df_result['销售额'].fillna(0).astype('int64')
+df_result['同比'] = df_result['同比'].round(1)
+df_result['环比'] = df_result['环比'].round(1)
+
+# 排序
+df_result = df_result.sort_values(['企业', 'ATC1', '年季']).reset_index(drop=True)
+
+results = {'查询结果': df_result}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'mask_hengrui', 'df_target_drugs', 'df_merged', 'target_quarters', 'y', 'q', 'q_str', 'df_agg', 'get_prev_q', 'get_prev_y_q', 'df_qoq_base', 'df_calc', 'df_yoy_base', 'df_result', 'final_cols']
+[query_executor] results 类型: <class 'dict'>, 内容: {'查询结果': Empty DataFrame
+Columns: [企业, ATC1, 销售额, 同比, 环比, 年季]
+Index: []}
+[query_executor] 提取到结果: ['查询结果']
+[query_executor] 结果 DataFrame shape: (0, 6)
+[query_executor] 结果 DataFrame columns: ['企业', 'ATC1', '销售额', '同比', '环比', '年季']
+[_df_to_chart_data] DataFrame 为空 (0行)
+[_df_to_full_records] DataFrame 为空 (0行)
+[query_executor] chart_data 长度: 0
+[query_executor] full_data 长度: 0
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 0
+[cube_sales_internal] 警告：data_records 为空或不是列表！
+INFO:     127.0.0.1:56860 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:56860 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63154 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+2026-02-06 11:02:10,402 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 11:02:10,405 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 11:02:10,406 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB7CE0>
+2026-02-06 11:02:10,406 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:02:10,407 - DEBUG - send_request_headers.complete
+2026-02-06 11:02:10,407 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 11:02:10,407 - DEBUG - send_request_body.complete
+2026-02-06 11:02:10,407 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:02:10,408 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 11:02:10,408 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 11:02:11,251 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB54F0>
+2026-02-06 11:02:11,251 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 11:02:11,252 - DEBUG - send_request_headers.complete
+2026-02-06 11:02:11,252 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 11:02:11,252 - DEBUG - send_request_body.complete
+2026-02-06 11:02:11,253 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:03:20,657 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:03:20 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=69200'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:03:20,658 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:03:20,658 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:03:20,799 - DEBUG - receive_response_body.complete
+2026-02-06 11:03:20,800 - DEBUG - response_closed.started
+2026-02-06 11:03:20,800 - DEBUG - response_closed.complete
+Traceback (most recent call last):
+  File "C:\Users\heiyu\Documents\GitHub\panel\backend\app\query_executor.py", line 258, in _execute_pandas_code
+    exec(code, exec_ctx)
+  File "<string>", line 41, in <module>
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 11734, in pct_change
+    shifted = data.shift(periods=periods, freq=freq, axis=axis, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 5713, in shift
+    return super().shift(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\heiyu\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 10841, in shift
+    assert axis == 0  # axis == 1 cases handled in DataFrame.shift
+           ^^^^^^^^^
+AssertionError
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+import numpy as np
+
+# 1. 定义时间范围
+# 目标时间: 2022Q1 ~ 2025Q3
+# 计算所需时间(含同比基期): 2021Q1 ~ 2025Q3
+calc_periods = [f"{y}Q{q}" for y in range(2021, 2026) for q in range(1, 5) if f"{y}Q{q}" <= "25Q3"]
+target_periods = [p for p in calc_periods if p >= "22Q1"]
+
+# 2. 筛选产品 (IPM表)
+# 模糊匹配 '恒瑞'
+mask_corp = df_ipm['集团名称'].fillna('').str.contains('恒瑞') | df_ipm['生产企业'].fillna('').str.contains('恒瑞')
+df_ipm_target = df_ipm.loc[mask_corp, ['药品索引', 'ATC1Des']].copy()
+# 统一企业名称为 '恒瑞'，以便聚合
+df_ipm_target['企业'] = '恒瑞'
+target_drugs = df_ipm_target['药品索引'].unique()
+
+# 3. 筛选销售数据 (Fact表)
+# 渠道: 医院 + 零售
+cond_channel = df_fact['渠道'].isin(['医院', '零售'])
+cond_time = df_fact['年季'].isin(calc_periods)
+cond_drug = df_fact['药品索引'].isin(target_drugs)
+
+df_fact_sub = df_fact[cond_channel & cond_time & cond_drug].copy()
+
+# 4. 关联与聚合
+df_merge = pd.merge(df_fact_sub, df_ipm_target, on='药品索引', how='inner')
+
+# 按 企业, ATC1, 年季 聚合
+df_agg = df_merge.groupby(['企业', 'ATC1Des', '年季'])['销售额'].sum().reset_index()
+
+# 5. 计算同环比 (使用 Pivot Table 确保时间轴对齐)
+# 构建透视表: Index=[企业, ATC1], Columns=年季
+df_pivot = df_agg.pivot_table(index=['企业', 'ATC1Des'], columns='年季', values='销售额', aggfunc='sum').fillna(0)
+
+# 确保列按时间顺序排列
+sorted_cols = sorted([c for c in df_pivot.columns if c in calc_periods])
+df_pivot = df_pivot.reindex(columns=sorted_cols)
+
+# 计算环比 (QoQ, shift 1) 和 同比 (YoY, shift 4)
+df_qoq = df_pivot.pct_change(axis=1, periods=1) * 100
+df_yoy = df_pivot.pct_change(axis=1, periods=4) * 100
+
+# 6. 提取目标时间段并转换回长表
+# 仅保留 2022Q1 ~ 2025Q3
+final_cols = [c for c in sorted_cols if c in target_periods]
+
+# 堆叠数据
+df_res_sales = df_pivot[final_cols].stack().rename('销售额').reset_index()
+df_res_qoq = df_qoq[final_cols].stack().rename('环比(%)').reset_index()
+df_res_yoy = df_yoy[final_cols].stack().rename('同比(%)').reset_index()
+
+# 合并结果
+result = pd.merge(df_res_sales, df_res_yoy, on=['企业', 'ATC1Des', '年季'], how='left')
+result = pd.merge(result, df_res_qoq, on=['企业', 'ATC1Des', '年季'], how='left')
+
+# 7. 格式化
+result['销售额'] = result['销售额'].astype('int64')
+# 替换 inf 为 nan 并填充 0，保留1位小数
+result['同比(%)'] = result['同比(%)'].replace([np.inf, -np.inf], np.nan).fillna(0).round(1)
+result['环比(%)'] = result['环比(%)'].replace([np.inf, -np.inf], np.nan).fillna(0).round(1)
+
+# 重命名列以匹配用户要求
+result = result.rename(columns={'ATC1Des': 'ATC1'})
+
+# 按时间排序方便查看
+result = result.sort_values(['企业', 'ATC1', '年季']).reset_index(drop=True)
+
+[query_executor] 代码执行错误: 
+INFO:     127.0.0.1:49722 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 检测到图表制作工具，处理输入数据...
+INFO:     127.0.0.1:49722 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 11:04:00,209 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 11:04:00,212 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 11:04:00,213 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB5700>
+2026-02-06 11:04:00,213 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:04:00,214 - DEBUG - send_request_headers.complete
+2026-02-06 11:04:00,214 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 11:04:00,215 - DEBUG - send_request_body.complete
+2026-02-06 11:04:00,215 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:04:00,215 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 11:04:00,215 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 11:04:00,963 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCB48C0>
+2026-02-06 11:04:00,964 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 11:04:00,965 - DEBUG - send_request_headers.complete
+2026-02-06 11:04:00,965 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 11:04:00,966 - DEBUG - send_request_body.complete
+2026-02-06 11:04:00,966 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:05:20,837 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:05:20 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=79659'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:05:20,838 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:05:20,838 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:05:20,988 - DEBUG - receive_response_body.complete
+2026-02-06 11:05:20,988 - DEBUG - response_closed.started
+2026-02-06 11:05:20,989 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】 你是一位医药行业的 Python 专家。
+                    【历史对话】(用于理解指代)
+                    {history_str}
+                    
+                    【当前用户问题】
+                    "{user_query}"
+                    
+                    【数据上下文】 {context_info}
+                    
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. 使用 `pd.merge` 关联两表 (除非用户只查单表)。
+                    3. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    4. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    5. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    6. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    7. 结果必须赋值给变量 `result`。
+                    8. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    9. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    10. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    11. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞 2022~2025Q3 季度销售额
+字段：企业 ATC1 销售额 同比 环比 年季
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+import numpy as np
+
+# 1. 筛选符合'恒瑞'条件的药品
+# 匹配生产企业或集团名称
+mask_hengrui = df_ipm['生产企业'].str.contains('恒瑞', na=False) | df_ipm['集团名称'].str.contains('恒瑞', na=False)
+df_target_drugs = df_ipm.loc[mask_hengrui, ['药品索引', '生产企业', 'ATC1Des']]
+
+# 2. 关联销售事实表
+# 筛选渠道：医院和零售
+df_fact_filtered = df_fact[df_fact['渠道'].isin(['医院', '零售'])]
+df_merged = pd.merge(df_fact_filtered, df_target_drugs, on='药品索引', how='inner')
+
+# 3. 分组聚合计算季度销售额
+# 维度: 生产企业, ATC1, 年季
+df_agg = df_merged.groupby(['生产企业', 'ATC1Des', '年季'])['销售额'].sum().reset_index()
+df_agg.rename(columns={'生产企业': '企业', 'ATC1Des': 'ATC1'}, inplace=True)
+
+# 4. 计算同比和环比
+# 确保按时间排序
+df_agg.sort_values(by=['企业', 'ATC1', '年季'], inplace=True)
+
+# 计算环比 (Current vs Previous Quarter)
+# 按企业和ATC1分组，取上一行数据
+df_agg['Prev_Q_Sales'] = df_agg.groupby(['企业', 'ATC1'])['销售额'].shift(1)
+df_agg['环比(%)'] = (df_agg['销售额'] - df_agg['Prev_Q_Sales']) / df_agg['Prev_Q_Sales'] * 100
+
+# 计算同比 (Current vs Same Quarter Last Year)
+# 构造去年同期的年季Key
+def get_last_year_q(q_str):
+    try:
+        year = int(q_str[:4])
+        suffix = q_str[4:]
+        return f"{year-1}{suffix}"
+    except:
+        return None
+
+df_agg['Last_Year_Q'] = df_agg['年季'].apply(get_last_year_q)
+
+# 准备用于关联的去年数据
+df_last_year = df_agg[['企业', 'ATC1', '年季', '销售额']].copy()
+df_last_year.rename(columns={'年季': 'Last_Year_Q', '销售额': 'Prev_Y_Sales'}, inplace=True)
+
+# 关联获取去年同期销售额
+df_agg = pd.merge(df_agg, df_last_year, on=['企业', 'ATC1', 'Last_Year_Q'], how='left')
+df_agg['同比(%)'] = (df_agg['销售额'] - df_agg['Prev_Y_Sales']) / df_agg['Prev_Y_Sales'] * 100
+
+# 5. 数据格式化
+# 销售额取整
+df_agg['销售额'] = df_agg['销售额'].fillna(0).astype('int64')
+
+# 增长率保留1位小数
+for col in ['同比(%)', '环比(%)']:
+    df_agg[col] = df_agg[col].replace([np.inf, -np.inf], np.nan).round(1)
+
+# 提取最终字段
+result = df_agg[['企业', 'ATC1', '销售额', '同比(%)', '环比(%)', '年季']]
+
+results = {'恒瑞季度销售表现': result}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'mask_hengrui', 'df_target_drugs', 'df_fact_filtered', 'df_merged', 'df_agg', 'get_last_year_q', 'df_last_year', 'col', 'result']
+[query_executor] results 类型: <class 'dict'>, 内容: {'恒瑞季度销售表现':                 企业           ATC1        销售额  同比(%)  环比(%)    年季
+0       上海恒瑞医药有限公司   XM-肌肉-骨骼系统药物    4055976    NaN    NaN  21Q1
+1       上海恒瑞医药有限公司   XM-肌肉-骨骼系统药物    3732589    NaN   -8.0  21Q2
+2       上海恒瑞医药有限公司   XM-肌肉-骨骼系统药物    4109062    NaN   10.1  21Q3
+3       上海恒瑞医药有限公司   XM-肌肉-骨骼系统药物    2930088    NaN  -28.7  21Q4
+4       上海恒瑞医药有限公司   XM-肌肉-骨骼系统药物    2793064    NaN   -4.7  22Q1
+..             ...            ...        ...    ...    ...   ...
+548  苏州盛迪亚生物医药有限公司  XL-抗肿瘤药及免疫调节剂  702679771    NaN    9.4  24Q3
+549  苏州盛迪亚生物医药有限公司  XL-抗肿瘤药及免疫调节剂  626672002    NaN  -10.8  24Q4
+550  苏州盛迪亚生物医药有限公司  XL-抗肿瘤药及免疫调节剂  618507215    NaN   -1.3  25Q1
+551  苏州盛迪亚生物医药有限公司  XL-抗肿瘤药及免疫调节剂  677944545    NaN    9.6  25Q2
+552  苏州盛迪亚生物医药有限公司  XL-抗肿瘤药及免疫调节剂  760161679    NaN   12.1  25Q3
+
+[553 rows x 6 columns]}
+[query_executor] 提取到结果: ['恒瑞季度销售表现']
+[query_executor] 结果 DataFrame shape: (553, 6)
+[query_executor] 结果 DataFrame columns: ['企业', 'ATC1', '销售额', '同比(%)', '环比(%)', '年季']
+[_df_to_chart_data] DataFrame shape: (553, 6), 列名: ['企业', 'ATC1', '销售额', '同比(%)', '环比(%)', '年季']
+[_df_to_full_records] DataFrame shape: (553, 6)
+[query_executor] chart_data 长度: 553
+[query_executor] full_data 长度: 553
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 553
+[cube_sales_internal] 查询成功，返回 553 条记录
+INFO:     127.0.0.1:52796 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 11:05:21,650 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 11:05:21,652 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 11:05:21,652 - DEBUG - send_request_headers.complete
+2026-02-06 11:05:21,652 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 11:05:21,652 - DEBUG - send_request_body.complete
+2026-02-06 11:05:21,654 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:06:02,601 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:06:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=40724'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:06:02,601 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:06:02,602 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:06:02,740 - DEBUG - receive_response_body.complete
+2026-02-06 11:06:02,740 - DEBUG - response_closed.started
+2026-02-06 11:06:02,740 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 推荐图表制作
+[workflow] tool_id=recommended_chart, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[workflow] 接收到 1 个上游节点的输入数据
+[workflow] 检测到图表制作工具，处理输入数据...
+[workflow] 图表制作接收到数据: 553 条记录
+[chart_creation] 开始执行: tool_id=recommended_chart, rationale=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[chart_creation] 调用数据看板的统一图表生成逻辑...
+[chart_creation] 接收到 553 条数据记录
+[query_executor] 开始图表生成: title=【系统指令】你是一位数据可视化专家。请分析以下数据，推荐最合适的图表类型并提供详细的图表配置。                                    
+                                                                                                                        
+  【数据标题】{title}                                                                                                   
+  【数据统计】行数: {len(data)}, 列: {columns}                                                                          
+  【数据预览】                                                                                                          
+  {前20行数据}                                                                                                          
+                                                                                                                        
+  请根据数据特征（维度数量、数值分布、是否有时间序列、占比关系、层级结构等）推荐最佳图表类型。                          
+  你可以自由选择任何图表类型，包括但不限于：                                                                            
+  - bar (柱状图): 分类对比                                                                                              
+  - line (折线图): 时间序列、趋势                                                                                       
+  - pie (饼图): 占比/份额，维度 ≤ 8                                                                                     
+  - area (面积图): 趋势+累积                                                                                            
+  - scatter (散点图): 两个数值变量的关系                                                                                
+  - bubble (气泡图): 三个变量（x, y, size）                                                                             
+  - waterfall (瀑布图): 增减变化过程                                                                                    
+  - radar (雷达图): 多维度对比                                                                                          
+  - funnel (漏斗图): 转化率/阶段                                                                                        
+  - treemap (树图): 层级占比                                                                                            
+  - heatmap (热力图): 矩阵数据                                                                                          
+  - map (地图): 地理分布                                                                                                
+  - gauge (仪表盘): 单一指标完成度                                                                                      
+  - image (图片): 展示相关图片                                                                                          
+                                                                                                                        
+  输出 JSON 格式（同上）                                                                                                
+                                                                                                                        
+  ---                                                                                                                   
+  使用的模型: MODEL_CHART（图表推荐专用模型）
+工具: 推荐图表制作
+预置问题: 为销售趋势数据推荐合适的图表
+时间范围: 最近365天
+[chart_creation] 图表生成成功: line
+[chart_creation] 返回 553 条数据记录
+INFO:     127.0.0.1:52796 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50805 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59735 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59735 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59735 - "GET /api/toolbox/tool/recommended_chart HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53611 - "GET /api/research/tools HTTP/1.1" 200 OK
+2026-02-06 11:13:08,405 - INFO - Initialized skill instance: research_plan_generator
+2026-02-06 11:13:08,406 - INFO - Initialized skill instance: research_data_collector
+2026-02-06 11:13:08,406 - INFO - Initialized skill instance: research_report_generator
+INFO:     127.0.0.1:53611 - "GET /api/admin/skills HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53611 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53611 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53611 - "GET /api/admin/skills HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58857 - "GET /api/admin/skills HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50658 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50658 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55555 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64825 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60659 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60659 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60659 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54873 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54873 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61313 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61313 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61313 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52212 - "OPTIONS /api/research/execute-workflow HTTP/1.1" 200 OK
+2026-02-06 11:52:41,844 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 11:52:41,853 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 11:52:41,854 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE3EC0>
+2026-02-06 11:52:41,855 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:52:41,855 - DEBUG - send_request_headers.complete
+2026-02-06 11:52:41,856 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 11:52:41,857 - DEBUG - send_request_body.complete
+2026-02-06 11:52:41,857 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 11:52:41,857 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 11:52:41,858 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 11:52:42,551 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FD2D362A0>
+2026-02-06 11:52:42,551 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 11:52:42,552 - DEBUG - send_request_headers.complete
+2026-02-06 11:52:42,552 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 11:52:42,552 - DEBUG - send_request_body.complete
+2026-02-06 11:52:42,552 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 11:53:45,277 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 03:53:44 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=62481'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 11:53:45,278 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 11:53:45,279 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 11:53:45,476 - DEBUG - receive_response_body.complete
+2026-02-06 11:53:45,477 - DEBUG - response_closed.started
+2026-02-06 11:53:45,477 - DEBUG - response_closed.complete
+[workflow] 开始执行工作流，共 1 个步骤
+[workflow] 执行步骤 1/1: 魔方销售数据库
+[workflow] tool_id=cube_sales_database, model=deep
+[workflow] 完整提示词:
+【系统指令】你是一位医药行业的 Python 专家。请将用户的指令，在识别了意图之后，获取了表头字典之后，生成在关联库中提取对应数据的代码
+                              
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    3. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    4. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    5. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    6. 结果必须赋值给变量 `result`。
+                    7. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    8. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    9. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    10. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[workflow] 检测到魔方销售数据库工具，执行数据查询...
+[workflow] 使用数据表: ['fact', 'ipm']
+[cube_sales_internal] 开始执行: tables=['fact', 'ipm'], model=deep
+[cube_sales_internal] 查询文本:
+【系统指令】你是一位医药行业的 Python 专家。请将用户的指令，在识别了意图之后，获取了表头字典之后，生成在关联库中提取对应数据的代码
+                              
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    3. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    4. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    5. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    6. 结果必须赋值给变量 `result`。
+                    7. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    8. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    9. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    10. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[cube_sales_internal] 调用数据看板的统一查询逻辑...
+[query_executor] 开始执行查询: 【系统指令】你是一位医药行业的 Python 专家。请将用户的指令，在识别了意图之后，获取了表头字典之后，生成在关联库中提取对应数据的代码
+                              
+                    【指令】 
+                    1. 严格按用户要求提取字段。
+                    2. **重要**: 确保所有使用的变量（如 market_share）都在代码中明确定义。不要使用未定义的变量。
+                    3. **绝对禁止**导入 IPython 或使用 display() 函数。
+                    4. 禁止使用 df.columns = [...] 强行改名，请使用 df.rename()。
+                    5. **避免 'ambiguous' 错误**：如果 index name 与 column name 冲突，请在 reset_index() 前先使用 `df.index.name = None` 或重命名索引。
+                    6. 结果必须赋值给变量 `result`。
+                    7. **份额计算强制规则**: 
+                    - 计算市场份额时，结果**必须乘以 100**，转换为百分数格式 (Percentage)。
+                    - 例如：销售额/总额 = 0.1234，应存储为 12.34，而不是 0.1234。
+                    - 列名必须包含 "(%)" 以提示用户，例如 "2024份额(%)"。
+                    8. **数据类型与精度**:
+                    - 份额列、变化率列：必须强制转换为 `float` 类型，保留 1 位小数 (`round(1)`)。
+                    - 销售额列：必须转换为 `int` 类型 (无小数)。
+                    - **严禁**对份额列使用 `astype(int)`，否则小于 1% 的份额会变成 0
+                    9. **市场份额** 当提到计算份额时，优先定义分母是用户提到的所有产品总 > 对应细分领域下所有产品总 > 全产品总和；然后再做计算
+                    10. **代码安全 - 严禁 inplace=True 后赋值**: 
+                        - 错误写法: `df = df.rename(..., inplace=True)` (这会导致 df 变成 None)
+                        - 正确写法: `df = df.rename(...)` 或 `df.rename(..., inplace=True)` (不赋值)
+                    
+                    
+                    【关键指令】
+                    1. **数据范围检查**: 查看上下文中的日期范围。最新的日期决定了“当前周期”。
+                    2. **同口径对比 (Like-for-Like)**: 当分析跨年增长或趋势时，**必须**筛选前一年的数据以匹配当前年份的月份/季度范围 (YTD逻辑)。
+                        - 例如: 如果最大日期是 2025-09-30，那么“2024年数据”用于对比时，只能取 2024-01-01 到 2024-09-30，而不是2024全年的数据。
+                    3. 返回时间范围时，需要说明用的原始表中的哪个时间段 如问最近两年的同比，如果为了对齐数据，则返回格式为 2024Q1~Q3 & 2025Q1~Q3
+工具: 魔方销售数据库
+用户需求: 恒瑞
+数据源: 核心医院渠道, 实体零售渠道
+时间范围: 最近365天
+[query_executor] 数据表: ['fact', 'ipm']
+[query_executor] 模型: deep
+[query_executor] 注入数据表: df_fact, shape=(1186276, 5)
+[query_executor] 注入数据表: df_ipm, shape=(197798, 26)
+[query_executor] 检测到 Fact 表使用2位年份格式，转换时间上下文
+[query_executor] 转换后 MAT: ['24Q4', '25Q1', '25Q2', '25Q3']
+[query_executor] 调用 Gemini 模型: gemini-3-pro-preview
+[query_executor] 代码生成成功
+[query_executor] 开始执行代码...
+[query_executor] 已自动修复代码中的时间格式
+[query_executor] 生成的代码:
+import pandas as pd
+
+# 1. 关联表并筛选字段 (使用 df_ipm 的生产企业信息)
+# 仅保留需要的列以优化性能
+df_merged = pd.merge(
+    df_fact[df_fact['渠道'].isin(['医院', '零售'])], 
+    df_ipm[['药品索引', '生产企业']], 
+    on='药品索引', 
+    how='left'
+)
+
+# 2. 时间筛选: 使用当前MAT周期 (mat_list 已在环境中定义)
+df_mat = df_merged[df_merged['年季'].isin(mat_list)]
+
+# 3. 计算分母: 各渠道的市场总销售额
+df_total = df_mat.groupby('渠道')['销售额'].sum().reset_index().rename(columns={'销售额': '市场总销售额'})
+
+# 4. 计算分子: 恒瑞的销售额
+# 模糊匹配 '恒瑞'，处理可能的空值
+df_hengrui = df_mat[df_mat['生产企业'].fillna('').str.contains('恒瑞')]
+df_hengrui_sales = df_hengrui.groupby('渠道')['销售额'].sum().reset_index().rename(columns={'销售额': '恒瑞销售额'})
+
+# 5. 合并结果并计算份额
+df_result = pd.merge(df_hengrui_sales, df_total, on='渠道', how='left')
+
+# 计算份额(%)
+df_result['份额(%)'] = (df_result['恒瑞销售额'] / df_result['市场总销售额']) * 100
+
+# 6. 格式化数据
+# 销售额取整，份额保留1位小数
+df_result['恒瑞销售额'] = df_result['恒瑞销售额'].astype('int64')
+df_result['市场总销售额'] = df_result['市场总销售额'].astype('int64')
+df_result['份额(%)'] = df_result['份额(%)'].round(1)
+
+# 仅保留关键列展示
+df_final = df_result[['渠道', '恒瑞销售额', '份额(%)']]
+
+results = {'恒瑞_MAT分渠道表现': df_final}
+[query_executor] 代码执行成功
+[query_executor] 执行后上下文变量: ['results', 'df_fact', 'df_ipm', 'mat_list', 'mat_list_prior', 'ytd_list', 'ytd_list_prior', 'df_merged', 'df_mat', 'df_total', 'df_hengrui', 'df_hengrui_sales', 'df_result', 'df_final']
+[query_executor] results 类型: <class 'dict'>, 内容: {'恒瑞_MAT分渠道表现':    渠道        恒瑞销售额  份额(%)
+0  医院  18887834863    2.2
+1  零售   4308240021    0.9}
+[query_executor] 提取到结果: ['恒瑞_MAT分渠道表现']
+[query_executor] 结果 DataFrame shape: (2, 3)
+[query_executor] 结果 DataFrame columns: ['渠道', '恒瑞销售额', '份额(%)']
+[_df_to_chart_data] DataFrame shape: (2, 3), 列名: ['渠道', '恒瑞销售额', '份额(%)']
+[_df_to_full_records] DataFrame shape: (2, 3)
+[query_executor] chart_data 长度: 2
+[query_executor] full_data 长度: 2
+[cube_sales_internal] result keys: dict_keys(['data', 'fullData', 'title', 'logicDescription', 'config', 'mode', 'summary', 'generated_code'])
+[cube_sales_internal] fullData 存在: True
+[cube_sales_internal] data 存在: True
+[cube_sales_internal] data_records 类型: <class 'list'>
+[cube_sales_internal] data_records 长度: 2
+[cube_sales_internal] 查询成功，返回 2 条记录
+INFO:     127.0.0.1:52212 - "POST /api/research/execute-workflow HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55458 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64309 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59833 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50480 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58280 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58962 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53400 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53400 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53400 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53400 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64376 - "GET /api/toolbox/tool/cube_sales_database HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60823 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60823 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60823 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64667 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55304 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55304 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60577 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60577 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50433 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50433 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50433 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62540 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51704 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51704 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51704 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51704 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51704 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51704 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51704 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51704 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61107 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61340 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61340 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50320 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50337 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50371 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50383 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50402 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/dashboards HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/dashboard/1/items HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58272 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55882 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55882 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:61756 - "OPTIONS /api/dashboard/insight HTTP/1.1" 200 OK
+2026-02-06 14:58:01,368 - INFO - AFC is enabled with max remote calls: 10.
+2026-02-06 14:58:01,375 - DEBUG - connect_tcp.started host='127.0.0.1' port=10808 local_address=None timeout=None socket_options=None
+2026-02-06 14:58:01,377 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE2B10>
+2026-02-06 14:58:01,377 - DEBUG - send_request_headers.started request=<Request [b'CONNECT']>
+2026-02-06 14:58:01,378 - DEBUG - send_request_headers.complete
+2026-02-06 14:58:01,379 - DEBUG - send_request_body.started request=<Request [b'CONNECT']>
+2026-02-06 14:58:01,379 - DEBUG - send_request_body.complete
+2026-02-06 14:58:01,379 - DEBUG - receive_response_headers.started request=<Request [b'CONNECT']>
+2026-02-06 14:58:01,380 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'Connection established', [])
+2026-02-06 14:58:01,380 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000013FD2DB8650> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-02-06 14:58:02,063 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000013FDBCE3620>
+2026-02-06 14:58:02,064 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-02-06 14:58:02,064 - DEBUG - send_request_headers.complete
+2026-02-06 14:58:02,064 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-02-06 14:58:02,064 - DEBUG - send_request_body.complete
+2026-02-06 14:58:02,064 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-02-06 14:58:31,240 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Content-Type', b'application/json; charset=UTF-8'), (b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Encoding', b'gzip'), (b'Date', b'Fri, 06 Feb 2026 06:58:31 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=28989'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-02-06 14:58:31,240 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:generateContent "HTTP/1.1 200 OK"
+2026-02-06 14:58:31,241 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-02-06 14:58:31,257 - DEBUG - receive_response_body.complete
+2026-02-06 14:58:31,258 - DEBUG - response_closed.started
+2026-02-06 14:58:31,258 - DEBUG - response_closed.complete
+INFO:     127.0.0.1:61756 - "POST /api/dashboard/insight HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54997 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54997 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63013 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59720 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:64245 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64260 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64279 - "GET /api/research/tools HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52677 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59391 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49774 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49785 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61420 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52547 - "POST /api/tool-test/execute HTTP/1.1" 404 Not Found
