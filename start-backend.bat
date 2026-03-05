@@ -23,10 +23,10 @@ if errorlevel 1 (
 )
 
 echo [INFO] 启动 FastAPI 服务器...
-echo [INFO] 后端地址: http://localhost:8000
+echo [INFO] 后端地址: http://localhost:8001
 echo.
 
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8001
 
 echo.
 echo [INFO] 服务器已停止

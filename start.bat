@@ -41,13 +41,13 @@ call venv\Scripts\activate.bat
 pip install -r requirements.txt >nul 2>nul
 
 echo.
-echo [3/4] 启动后端服务 (端口 8000)...
-start "Backend Server" cmd /k "cd /d %~dp0backend && venv\Scripts\activate.bat && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+echo [3/4] 启动后端服务 (端口 8001)...
+start "Backend Server" cmd /k "cd /d %~dp0backend && venv\Scripts\activate.bat && uvicorn app.main:app --reload --host 0.0.0.0 --port 8001"
 
 timeout /t 3 /nobreak >nul
 
 echo.
-echo [4/4] 启动前端服务 (端口 5173)...
+echo [4/4] 启动前端服务 (端口 5174)...
 start "Frontend Server" cmd /k "cd /d %~dp0frontend && npm run dev"
 
 echo.
@@ -55,9 +55,9 @@ echo ========================================
 echo    服务启动完成！
 echo ========================================
 echo.
-echo 前端地址: http://localhost:5173
-echo 后端地址: http://localhost:8000
-echo API 文档: http://localhost:8000/docs
+echo 前端地址: http://localhost:5174
+echo 后端地址: http://localhost:8001
+echo API 文档: http://localhost:8001/docs
 echo.
 echo 按任意键关闭此窗口（服务将继续运行）
 echo 要停止服务，请关闭对应的命令行窗口

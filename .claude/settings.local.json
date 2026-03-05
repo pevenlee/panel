@@ -39,7 +39,9 @@
       "Bash(Get-Content \"C:\\\\Users\\\\heiyu\\\\Documents\\\\GitHub\\\\panel\\\\backend\\\\debug.log\" -Tail 100)",
       "Bash(tree:*)",
       "Bash(iconv:*)",
-      "Bash(Get-Content \"C:\\\\Users\\\\heiyu\\\\Documents\\\\GitHub\\\\panel\\\\backend\\\\debug.log\" -Tail 50)"
+      "Bash(Get-Content \"C:\\\\Users\\\\heiyu\\\\Documents\\\\GitHub\\\\panel\\\\backend\\\\debug.log\" -Tail 50)",
+      "Bash(docker compose up:*)",
+      "Bash(docker compose:*)"
     ]
   }
 }
